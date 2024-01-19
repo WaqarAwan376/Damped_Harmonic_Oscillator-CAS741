@@ -3,9 +3,9 @@
 \usepackage{tabularx}
 \usepackage{booktabs}
 
-\title{Problem Statement and Goals\\\progname}
+\title{Damped Harmonic Oscillator\\}
 
-\author{\authname}
+\author{Authors: Waqar Awan and Dr. Spencer Smith }
 
 \date{}
 
@@ -22,35 +22,77 @@
 \toprule
 \textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
 \midrule
-Date1 & Name(s) & Description of changes\\
-Date2 & Name(s) & Description of changes\\
-... & ... & ...\\
+Fri Jan 19 & Waqar Awan(s) & Initial Document\\
 \bottomrule
 \end{tabularx}
 \end{table}
 
 \section{Problem Statement}
 
-\wss{You should check your problem statement with the
-\href{https://github.com/smiths/capTemplate/blob/main/docs/Checklists/ProbState-Checklist.pdf}
-{problem statement checklist}.}
-\wss{You can change the section headings, as long as you include the required information.}
-
 \subsection{Problem}
+This project focuses on the physics of a damped harmonic oscillator, a concept in physics and engineering. 
+It involves a mass-spring system, where the mass is subject to both a restoring force from the spring and a damping force. 
+Understanding this system is crucial because it's a simplified model for many real-world phenomena like vehicle suspension systems and building responses to earthquakes.
 
 \subsection{Inputs and Outputs}
 
-\wss{Characterize the problem in terms of ``high level'' inputs and outputs.  
-Use abstraction so that you can avoid details.}
+\begin{itemize}
+    \item \textbf{Input:} \begin{enumerate}
+        \item Mass of the oscillator(m)
+        \item Damping Coefficient(b)
+        \item Spring constant(k)
+        \item Displacement(x)
+        \item Velocity(v)
+        \item External force(if any)
+    \end{enumerate}
+
+    \item \textbf{Output:} \begin{enumerate}
+        \item Time Evaluation
+        \item Displacement and velocity of the mass as a function of time
+        \item System response when under damped, critically damped, and over damped
+        \item Amplitude
+        \item Frequency
+    \end{enumerate}
+\end{itemize}
 
 \subsection{Stakeholders}
 
+\begin{itemize}
+    \item Educators and students in physics and engineering disciplines.
+    \item Developers of simulation software for physical systems.
+    \item Industries dealing with oscillatory and vibration damping systems.
+\end{itemize}
+
 \subsection{Environment}
 
-\wss{Hardware and software}
+\begin{itemize}
+    \item \textbf{Hardware:} \begin{enumerate}
+        \item \textbf{Development Machine:} A computer with sufficient processing power and memory (RAM) to handle development tasks. Ideally, a multi-core processor and at least 4GB of RAM.
+        \item \textbf{Testing Devices:} Smart devices like laptop and smartphone for testing correctness of the results and software interfaces.
+    \end{enumerate}
+
+    \item \textbf{Software:} \begin{enumerate}
+        \item Involves computational tools for solving differential equations.
+        \item Graphical tools for illustrating the system's behavior.
+    \end{enumerate}
+\end{itemize}
 
 \section{Goals}
+The main goals of this project is to:
+\begin{itemize}
+    \item Create a simulation model that accurately represents the behavior of a damped harmonic oscillator in various scenarios.
+    \item Facilitate the understanding of damping effects on oscillatory systems through interactive and visual tools.
+    \item Enhance educational understanding of damped oscillatory systems.
+    \item Simulate real-time data and mathematical derivation.
+    \item Design tools to allow user to create and save custom scenarios, and do comparative analysis.
+\end{itemize}
 
 \section{Stretch Goals}
+
+\begin{itemize}
+    \item Extend the model to include non-linear damping effects.
+    \item Integrate real-time experimental data for comparison with simulations.
+    \item Develop an augmented reality application to visualize oscillations in a physical environment.
+\end{itemize}
 
 \end{document}

@@ -233,66 +233,74 @@ $w$ & radians per second (\si{\radian\per\second}) & Angular Frequency\\
 
 \section{Introduction}
 
-\plt{The introduction section is written to introduce the problem.  It starts
-  general and focuses on the problem domain. The general advice is to start with
-a paragraph or two that describes the problem, followed by a ``roadmap''
-paragraph.  A roadmap orients the reader by telling them what sub-sections to
-expect in the Introduction section.}
+In physics and engineering, the concept of harmonic oscillators gives 
+us a way to understand how things move back and forth or oscillate. It 
+offering insights into systems' behavior under periodic forces. 
+Understanding system dynamics of a simple pendulum or a mass attached 
+to a spring is crucial for advancements in various scientific and 
+engineering fields. This document introduces a software project aimed 
+at modeling and analyzing harmonic oscillators, providing a tool for 
+educational, research, and industrial applications to observe the effect 
+of damping on oscillating bodies.
+\newline
+\newline
+This introduction serves as a roadmap to the document, outlining its 
+structure and guiding the reader through the subsequent sections. 
+Following this introduction, the document details the purpose of the 
+SRS, the scope of requirements, characteristics of the intended reader, 
+and the organization of the document itself.
 
 \subsection{Purpose of Document}
 
-\plt{This section summarizes the purpose of the SRS document.  It does not focus
-  on the problem itself.  The problem is described in the ``Problem
-  Description'' section (Section~\ref{Sec_pd}).  The purpose is for the document
-  in the context of the project itself, not in the context of this course.
-  Although the ``purpose'' of the document is to get a grade, you should not
-  mention this.  Instead, ``fake it'' as if this is a real project.  The purpose
-  section will be similar between projects.  The purpose of the document is the
-  purpose of the SRS, including communication, planning for the design stage,
-  etc.}
+The purpose of this Software Requirement Specification (SRS) document 
+is to outline the functional and non-functional requirements for a 
+software project focused on the simulation and analysis of harmonic 
+oscillators. This document is intended to serve as a comprehensive 
+guide for the development team, ensuring that the software meets the 
+specific needs of its users. Additionally, this SRS aims to facilitate 
+clear communication among stakeholders, provide a basis for estimating 
+costs and timelines, and implementation phases of the project.
 
 \subsection{Scope of Requirements} 
 
-\plt{Modelling the real world requires simplification.  The full complexity of
-  the actual physics, chemistry, biology is too much for existing models, and
-  for existing computational solution techniques.  Rather than say what is in
-  the scope, it is usually easier to say what is not.  You can think of it as
-  the scope is initially everything, and then it is constrained to create the
-  actual scope.  For instance, the problem can be restricted to 2 dimensions, or
-  it can ignore the effect of temperature (or pressure) on the material
-  properties, etc.}  
+This project is the simulation of harmonic oscillators, a fundamental 
+concept in physics. To manage the complexity in modeling real-world 
+phenomena, the scope of this software will be constrained. Specifically, 
+the project will focus on:
 
-\plt{The scope section is related to the assumptions section
-  (Section~\ref{sec_assumpt}).  However, the scope and the assumptions are not
-  at the same level of abstraction.  The scope is at a high level.  The focus is
-  on the ``big picture'' assumptions.  The assumptions section lists, and
-  describes, all of the assumptions.}
+\begin{itemize}
+  \item Modeling in two dimensions to simplify visualizations and 
+  computations.
+  \item Ignoring environmental factors such as temperature and pressure 
+  variations that might affect the system's properties.
+  \item Only considering linear restoring force.
+\end{itemize}
 
-\plt{The scope section is relevant for later determining typical values of inputs. The scope should make it clear what inputs are reasonable to expect. This is a distinction between scope and context (context is a later section).  Scope affects the inputs while context affects how the software will be used.}
+These constraints are chosen to make the problem tractable while still 
+providing valuable insights and educational utility.
 
 \subsection{Characteristics of Intended Reader} \label{sec_IntendedReader}
 
-\plt{This section summarizes the skills and knowledge of the readers of the
-  SRS.  It does NOT have the same purpose as the ``User Characteristics''
-  section (Section~\ref{SecUserCharacteristics}).  The intended readers are the
-  people that will read, review and maintain the SRS.  They are the people that
-  will conceivably design the software that is intended to meet the
-  requirements.  The user, on the other hand, is the person that uses the
-  software that is built.  They may never read this SRS document.  Of course,
-  the same person could be a ``user'' and an ``intended reader.''}
-
-\plt{The intended reader characteristics should be written as unambiguously and
-  as specifically as possible.  Rather than say, the user should have an
-  understanding of physics, say what kind of physics and at what level.  For
-  instance, is high school physics adequate, or should the reader have had a
-  graduate course on advanced quantum mechanics?}
+This document is written for the people who will help build, review, 
+and maintain the software. They should know their way around basic 
+physics and be comfortable with the mathematics, especially the 
+oscillators and how they work. They don't need to be physicists, but 
+they should understand the science behind what I am trying to simulate.
 
 \subsection{Organization of Document}
 
-\plt{This section provides a roadmap of the SRS document.  It will help the
-  reader orient themselves.  It will provide direction that will help them
-  select which sections they want to read, and in what order.  This section will
-  be similar between project.}
+The document is organized to facilitate easy navigation and understanding 
+of the software requirements. After this section, the document is structured 
+as follows:
+
+\begin{itemize}
+  \item Section 3: General System Description
+  \item Section 4: Specific System Description
+  \item Section 5: Requirements
+\end{itemize}
+
+Readers are encouraged to refer to Section 3 for general system description, 
+Section 4 for specific system description, and Section 5 for requirements.
 
 \section{General System Description}
 

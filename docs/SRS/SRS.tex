@@ -128,7 +128,8 @@
 
 \begin{document}
 
-\title{Software Requirements Specification for \progname: subtitle describing software} 
+\title{Software Requirements Specification for \progname:
+Damped Harmonic Oscillator Illustrated by Online Calculator} 
 \author{\authname}
 \date{\today}
 	
@@ -147,17 +148,9 @@
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
-Date 1 & 1.0 & Notes\\
-Date 2 & 1.1 & Notes\\
+February 2, 2024 & 1.0 & Initial Document Release\\
 \bottomrule
 \end{tabularx}
-
-~\\
-\plt{This template is intended for use by CAS 741.  For CAS 741 the template
-should be used exactly as given, except the Reflection Appendix can be deleted.
-For the capstone course it is a source of ideas, but shouldn't be followed
-exactly.  The exception is the reflection appendix.  All capstone SRS documents
-should have a refelection appendix.}
 
 ~\newpage
 
@@ -175,38 +168,22 @@ description of the unit and the SI name.
 
 \renewcommand{\arraystretch}{1.2}
 %\begin{table}[ht]
-  \noindent \begin{tabular}{l l l} 
+  \noindent \begin{longtable*}{l l l}
     \toprule		
     \textbf{symbol} & \textbf{unit} & \textbf{SI}\\
     \midrule 
     \si{\metre} & length & metre\\
     \si{\kilogram} & mass	& kilogram\\
     \si{\second} & time & second\\
-    \si{\celsius} & temperature & centigrade\\
-    \si{\joule} & energy & joule\\
-    \si{\watt} & power & watt (W = \si{\joule\per\second})\\
+    \si{\newton} & force & Newton\\
+    \si{\hertz} & frequency & hertz (\si{\second^{-1}})\\
+    v & velocity & metre per second (\si{\meter\per\second})\\
+    a & acceleration & metre per second square (\si{\meter\per\square\second})\\
+    g & gravity & metre per second square (\si{\meter\per\square\second})\\
     \bottomrule
-  \end{tabular}
+  \end{longtable*}
   %	\caption{Provide a caption}
 %\end{table}
-
-\plt{Only include the units that your SRS actually uses.}
-
-\plt{Derived units, like newtons, pascal, etc, should show their derivation
-    (the units they are derived from) if their constituent units are in the
-    table of units (that is, if the units they are derived from are used in the
-    document).  For instance, the derivation of pascals as
-    $\si{\pascal}=\si{\newton\per\square\meter}$ is shown if newtons and m are
-    both in the table.  The derivations of newtons would not be shown if kg and
-    s are not both in the table.}
-
-\plt{The symbol for units named after people use capital letters, but the name
-  of the unit itself uses lower case.  For instance, pascals use the symbol Pa,
-  watts use the symbol W, teslas use the symbol T, newtons use the symbol N,
-  etc.  The one exception to this is degree Celsius.  Details on writing metric
-  units can be found on the 
-  \href{https://www.nist.gov/pml/weights-and-measures/writing-metric-units}
-  {NIST} web-page.}
 
 \subsection{Table of Symbols}
 
@@ -217,123 +194,42 @@ systems.  The symbols are listed in alphabetical order.
 
 \renewcommand{\arraystretch}{1.2}
 %\noindent \begin{tabularx}{1.0\textwidth}{l l X}
-\noindent \begin{longtable*}{l l p{12cm}} \toprule
+\noindent \begin{longtable*}{l l l} \toprule
 \textbf{symbol} & \textbf{unit} & \textbf{description}\\
 \midrule 
-$A_C$ & \si[per-mode=symbol] {\square\metre} & coil surface area
-\\
-$A_\text{in}$ & \si[per-mode=symbol] {\square\metre} & surface area over 
-which heat is transferred in
-\\ 
+$k$ & Newton per metre (\si{\newton\per\metre}) & Spring Constant\\
+$b$ & kilogram per second (\si{\kilogram\per\second}) & Damping Coefficient\\
+$x$ & metre (\si{\metre}) & Displacement\\
+$w$ & radians per second (\si{\radian\per\second}) & Angular Frequency\\
 \bottomrule
 \end{longtable*}
-\plt{Use your problems actual symbols.  The si package is a good idea to use for
-  units.}
-
-\subsection{Abbreviations and Acronyms}
-
-\renewcommand{\arraystretch}{1.2}
-\begin{tabular}{l l} 
-  \toprule		
-  \textbf{symbol} & \textbf{description}\\
-  \midrule 
-  A & Assumption\\
-  DD & Data Definition\\
-  GD & General Definition\\
-  GS & Goal Statement\\
-  IM & Instance Model\\
-  LC & Likely Change\\
-  PS & Physical System Description\\
-  R & Requirement\\
-  SRS & Software Requirements Specification\\
-  \progname{} & \plt{put an expanded version of your program name here (as appropriate)}\\
-  TM & Theoretical Model\\
-  \bottomrule
-\end{tabular}\\
-
-\plt{Add any other abbreviations or acronyms that you add}
-
-\subsection{Mathematical Notation}
-
-\plt{This section is optional, but should be included for projects that make use
-  of notation to convey mathematical information.  For instance, if typographic
-  conventions (like bold face font) are used to distinguish matrices, this
-  should be stated here.  If symbols are used to show mathematical operations,
-  these should be summarized here.  In some cases the easiest way to summarize
-  the notation is to point to a text or other source that explains the
-  notation.}
-
-\plt{This section was added to the template because some students use very
-  domain specific notation.  This notation will not be readily understandable to
-  people outside of your domain.  It should be explained.}
 
 \newpage
 
-\pagenumbering{arabic}
+\subsection{Abbreviations and Acronyms}
 
-\plt{This SRS template is based on \citet{SmithAndLai2005, SmithEtAl2007,
-  SmithAndKoothoor2016}.  It will get you started.  You should not modify the
-  section headings, without first discussing the change with the course
-  instructor.  Modification means you are not following the template, which
-  loses some of the advantage of a template, especially standardization.
-  Although the bits shown below do not include type information, you may need to
-  add this information for your problem.  If you are unsure, please can ask the
-  instructor.}
+\renewcommand{\arraystretch}{1.2} 
+\begin{longtable*}{l l}
+  \toprule		
+  \textbf{symbol} & \textbf{description}\\
+  \midrule 
+  SRS & Software Requirement Specification\\
+  ODE & Ordinary Differential Equation\\
+  DE & Differential Equation\\
+  DHO & Damped Harmonic Oscillator\\
+  SHM & Simple Harmonic Motion\\
+  \bottomrule
+\end{longtable*}
 
-\plt{Feel free to change the appearance of the report by modifying the LaTeX
-  commands.}
+\subsection{Mathematical Notation}
 
-\plt{This template document assumes that a single program is being documented.
-  If you are documenting a family of models, you should start with a commonality
-  analysis.  A separate template is provided for this.  For program
-  families you should look at \cite{Smith2006, SmithMcCutchanAndCarette2017}.
-  Single family member programs are often programs based on a single physical
-  model.  General purpose tools are usually documented as a family.  Families of
-  physical models also come up.}
-
-\plt{The SRS is not generally written, or read, sequentially.  The SRS is a
-  reference document.  It is generally read in an ad hoc order, as the need
-  arises.  For writing an SRS, and for reading one for the first time, the
-  suggested order of sections is:
 \begin{itemize}
-\item Goal Statement
-\item Instance Models
-\item Requirements
-\item Introduction
-\item Specific System Description
+  \item \textbf{Greek symbols} represent constants and parameters, such as $\omega$ for angular frequency.
+  \item \textbf{Subscripts} are used to denote specific instances or components, e.g., $x_{t}$ for the position at time t.
+  \item \textbf{Mathematical operations} and functions are denoted as follows: $sin$ and $cos$ for trigonometric functions, $e$ for the exponential function, and $d/dt$ for differentiation with respect to time.
 \end{itemize}
-}
 
-\plt{Guiding principles for the SRS document:
-\begin{itemize}
-\item Do not repeat the same information at the same abstraction level.  If
-  information is repeated, the repetition should be at a different abstraction
-  level.  For instance, there will be overlap between the scope section and the
-  assumptions, but the scope section will not go into as much detail as the
-  assumptions section.
-\end{itemize}
-}
-
-\plt{The template description comments should be disabled before submitting this
-  document for grading.}
-
-\plt{You can borrow any wording from the text given in the template.  It is part
-  of the template, and not considered an instance of academic integrity.  Of
-  course, you need to cite the source of the template.}
-
-\plt{When the documentation is done, it should be possible to trace back to the
-  source of every piece of information.  Some information will come from
-  external sources, like terminology.  Other information will be derived, like
-  General Definitions.}
-
-\plt{An SRS document should have the following qualities: unambiguous,
-  consistent, complete, validatable, abstract and traceable.}
-
-\plt{The overall goal of the SRS is that someone that meets the Characteristics
-  of the Intended Reader (Section~\ref{sec_IntendedReader}) can learn,
-  understand and verify the captured domain knowledge.  They should not have to
-  trust the authors of the SRS on any statements.  They should be able to
-  independently verify/derive every statement made.}
+\newpage
 
 \section{Introduction}
 

@@ -304,18 +304,15 @@ Section 4 for specific system description, and Section 5 for requirements.
 
 \section{General System Description}
 
-This section provides general information about the system.  It identifies the
-interfaces between the system and its environment, describes the user
-characteristics and lists the system constraints.  \plt{This text can likely be
-  borrowed verbatim.}
-
-\plt{The purpose of this section is to provide general information about the
-  system so the specific requirements in the next section will be easier to
-  understand. The general system description section is designed to be
-  changeable independent of changes to the functional requirements documented in
-  the specific system description. The general system description provides a
-  context for a family of related models.  The general description can stay the
-  same, while specific details are changed between family members.}
+This section outlines the overall framework of the software designed to 
+simulate and analyze harmonic oscillators, both simple and damped. It aims 
+to provide a basic understanding of how the system interacts with 
+its environment, detailing user interaction, external interfaces, and 
+inherent system constraints. The purpose here is to establish a broad 
+context that will make the specific requirements outlined in subsequent 
+sections clearer and more meaningful. By describing the system at a general 
+level, this section remains applicable even as specific functionalities 
+evolve or expand within the project's scope.
 
 \subsection{System Context}
 
@@ -378,23 +375,30 @@ automotive hazard analyses.}
 \wss{The }
 \subsection{User Characteristics} \label{SecUserCharacteristics}
 
-\plt{This section summarizes the knowledge/skills expected of the user.
-  Measuring usability, which is often a required non-function requirement,
-  requires knowledge of a typical user.  As mentioned above, the user is a
-  different role from the ``intended reader,'' as given in
-  Section~\ref{sec_IntendedReader}.  As in Section~\ref{sec_IntendedReader}, the
-  user characteristics should be specific an unambiguous.  For instance, ``The
-  end user of \progname{} should have an understanding of undergraduate Level 1
-  Calculus and Physics.''}
+Users of the Damped Harmonic Oscillator software are expected to have a basic 
+understanding of calculus and physics at an undergraduate level. Specifically, 
+they should be familiar with the concepts of differential equations as they 
+apply to motion and be able to apply basic physics principles to interpret 
+the simulation results. This foundational knowledge is crucial for effective 
+interaction with the software, enabling users to input realistic parameters 
+and accurately interpret simulation outcomes.
 
 \subsection{System Constraints}
 
-\plt{System constraints differ from other type of requirements because they
-  limit the developers' options in the system design and they identify how the
-  eventual system must fit into the world. This is the only place in the SRS
-  where design decisions can be specified.  That is, the quality requirement for
-  abstraction is relaxed here.  However, system constraints should only be
-  included if they are truly required.}
+Several key constraints influence the design and deployment of this software:
+
+\begin{itemize}
+  \item Platform Independence: It should run on common operating systems and 
+  web browsers without special hardware requirements.
+  \item Libraries and APIs: Where applicable, the software will rely on standard, 
+  open-source libraries for mathematical computations and graphical displays 
+  (e.g., NumPy, Matplotlib). The choice of these libraries is constrained by 
+  their availability, documentation, and compatibility with the target operating 
+  systems.
+  \item User Interface: Aimed at users with a basic understanding of physics and 
+  calculus, the software interface will prioritize simplicity to facilitate 
+  learning and exploration without overwhelming users with unnecessary complexity.
+\end{itemize}
 
 \section{Specific System Description}
 

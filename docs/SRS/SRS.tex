@@ -198,7 +198,7 @@ systems.  The symbols are listed in alphabetical order.
 \textbf{symbol} & \textbf{unit} & \textbf{description}\\
 \midrule 
 $k$ & Newton per metre (\si{\newton\per\metre}) & Spring Constant\\
-$b$ & kilogram per second (\si{\kilogram\per\second}) & Damping Coefficient\\
+$c$ & kilogram per second (\si{\kilogram\per\second}) & Damping Coefficient\\
 $x$ & metre (\si{\metre}) & Displacement\\
 $w$ & radians per second (\si{\radian\per\second}) & Angular Frequency\\
 \bottomrule
@@ -402,62 +402,60 @@ Several key constraints influence the design and deployment of this software:
 
 \section{Specific System Description}
 
-This section first presents the problem description, which gives a high-level
-view of the problem to be solved.  This is followed by the solution characteristics
-specification, which presents the assumptions, theories, definitions and finally
-the instance models.  \plt{Add any project specific details that are relevant
-  for the section overview.}
+This section delves into the high-level overview of the problem that the Damped 
+Harmonic Oscillator software aims to solve. Following this, the solution 
+characteristics specification elaborates on the assumptions, theories, definitions, 
+and instance models that explains the solution proposed by this project.
 
 \subsection{Problem Description} \label{Sec_pd}
 
-\progname{} is intended to solve ... \plt{What problem does your program solve?
-The description here should be in the problem space, not the solution space.}
+\progname{} targets the problem of accurately modeling and simulating the behavior 
+of a damped harmonic oscillator. Such systems are essential in understanding 
+phenomena where an object oscillates and gradually loses energy due to resistance 
+or damping forces. This simulation is vital in fields such as mechanical 
+engineering, where understanding the damping of oscillatory systems can lead to 
+better designs and predictions.
 
 \subsubsection{Terminology and  Definitions}
 
-\plt{This section is expressed in words, not with equations.  It provide the
-  meaning of the different words and phrases used in the domain of the problem.
-The terminology is used to introduce concepts from the world outside of the
-mathematical model  The terminology provides a real world connection to give the
-mathematical model meaning.}
-
 This subsection provides a list of terms that are used in the subsequent
-sections and their meaning, with the purpose of reducing ambiguity and making it
-easier to correctly understand the requirements:
+sections and their meaning, with the purpose of reducing ambiguity and making 
+it easier to correctly understand the requirements:
 
 \begin{itemize}
 
-\item 
+\item \textbf{Isolated System:} Neglects external forces other than the damping 
+and restoring forces.
+\item \textbf{Harmonic Motion:} Assumes that in the absence of damping, the system 
+would exhibit simple harmonic motion.
+\item \textbf{Linear Damping:} A damping force that is directly proportional to 
+the velocity of the oscillating object.
+\item \textbf{Nonlinear Damping:} A damping force that varies with velocity in a 
+non-proportional manner, often depending on the velocity's magnitude or other factors.
 
 \end{itemize}
 
 \subsubsection{Physical System Description} \label{sec_phySystDescrip}
 
-\plt{The purpose of this section is to clearly and unambiguously state the
-  physical system that is to be modelled. Effective problem solving requires a
-  logical and organized approach. The statements on the physical system to be
-  studied should cover enough information to solve the problem. The physical
-  description involves element identification, where elements are defined as
-  independent and separable items of the physical system. Some example elements
-  include acceleration due to gravity, the mass of an object, and the size and
-  shape of an object. Each element should be identified and labelled, with their
-  interesting properties specified clearly. The physical description can also
-  include interactions of the elements, such as the following: i) the
-  interactions between the elements and their physical environment; ii) the
-  interactions between elements; and, iii) the initial or boundary conditions.}
-
-The physical system of \progname{}, as shown in Figure~?,
-includes the following elements:
-
+The system comprises key elements crucial for its analysis and simulation:
 \begin{itemize}
-
-\item[PS1:] 
-
-\item[PS2:] ...
-
+  \item \textbf{Mass (m):} Represents the inertia of the oscillating object.
+  \item \textbf{Spring Constant (k):} Indicates the force needed to displace the 
+  system from its equilibrium position.
+  \item \textbf{Damping Coefficient (b):} For linear damping, quantifies the 
+  proportionality between the damping force and velocity.
+  \item \textbf{Damping Function (f(v)):} For nonlinear damping, represents the 
+  relationship between damping force and velocity, which may vary based on the 
+  system's specific characteristics.
 \end{itemize}
+ 
+ 
+The system's behavior is significantly influenced by the nature of the damping 
+force. The model must account for both linear and nonlinear damping scenarios, 
+with the interactions between the mass, spring constant, and damping forces 
+defining the system's dynamic response.
 
-\plt{A figure here makes sense for most SRS documents}
+% \plt{A figure here makes sense for most SRS documents}
 
 % \begin{figure}[h!]
 % \begin{center}
@@ -471,101 +469,30 @@ includes the following elements:
 
 \subsubsection{Goal Statements}
 
-\plt{The goal statements refine the ``Problem Description''
-  (Section~\ref{Sec_pd}).  A goal is a functional objective the system under
-  consideration should achieve. Goals provide criteria for sufficient
-  completeness of a requirements specification and for requirements
-  pertinence. Goals will be refined in Section “Instanced Models”
-  (Section~\ref{sec_instance}). Large and complex goals should be decomposed
-  into smaller sub-goals.  The goals are written abstractly, with a minimal
-  amount of technical language.  They should be understandable by non-domain
-  experts.}
-
-\noindent Given the \plt{inputs}, the goal statements are:
+With the inclusion of both linear and nonlinear damping forces, the software aims 
+to:
 
 \begin{itemize}
 
-\item[GS\refstepcounter{goalnum}\thegoalnum \label{G_meaningfulLabel}:] \plt{One
-    sentence description of the goal.  There may be more than one.  Each Goal
-    should have a meaningful label.}
-
+  \item[GS\refstepcounter{goalnum}\thegoalnum \label{G_meaningfulLabel1}:] Create a simulation model that accurately represents the 
+  behaviour of a damped harmonic oscillator in various scenarios.
+  \item[GS\refstepcounter{goalnum}\thegoalnum \label{G_meaningfulLabel2}:] Facilitate the understanding of damping effects on 
+  oscillatory systems through interactive and visual tools.
+  \item[GS\refstepcounter{goalnum}\thegoalnum \label{G_meaningfulLabel3}:] Simulate of mathematical derivation.
+  \item[GS\refstepcounter{goalnum}\thegoalnum \label{G_meaningfulLabel4}:] Design tools to allow users to create custom scenarios and 
+  do comparative analysis. 
+  \item[GS\refstepcounter{goalnum}\thegoalnum \label{G_meaningfulLabel5}:] Enhance educational understanding of damped oscillatory 
+  systems.
+  
 \end{itemize}
 
 \subsection{Solution Characteristics Specification}
 
-\plt{This section specifies the information in the solution domain of the system
-  to be developed. This section is intended to express what is required in
-  such a way that analysts and stakeholders get a clear picture, and the
-  latter will accept it. The purpose of this section is to reduce the problem
-  into one expressed in mathematical terms. Mathematical expertise is used to
-  extract the essentials from the underlying physical description of the
-  problem, and to collect and substantiate all physical data pertinent to the
-  problem.}
-
-\plt{This section presents the solution characteristics by successively refining
-  models.  It starts with the abstract/general Theoretical Models (TMs) and
-  refines them to the concrete/specific Instance Models (IMs).  If necessary
-  there are intermediate refinements to General Definitions (GDs).  All of these
-  refinements can potentially use Assumptions (A) and Data Definitions (DD).
-  TMs are refined to create new models, that are called GMs or IMs. DDs are not
-  refined; they are just used. GDs and IMs are derived, or refined, from other
-  models. DDs are not derived; they are just given. TMs are also just given, but
-  they are refined, not used.  If a potential DD includes a derivation, then
-  that means it is refining other models, which would make it a GD or an IM.}
-
-\plt{The above makes a distinction between ``refined'' and ``used.'' A model is
-  refined to another model if it is changed by the refinement. When we change a
-  general 3D equation to a 2D equation, we are making a refinement, by applying
-  the assumption that the third dimension does not matter. If we use a
-  definition, like the definition of density, we aren't refining, or changing
-  that definition, we are just using it.}
-
-\plt{The same information can be a TM in one problem and a DD in another.  It is
-  about how the information is used.  In one problem the definition of
-  acceleration can be a TM, in another it would be a DD.}
-
-\plt{There is repetition between the information given in the different chunks
-  (TM, GDs etc) with other information in the document.  For instance, the
-  meaning of the symbols, the units etc are repeated.  This is so that the
-  chunks can stand on their own when being read by a reviewer/user.  It also
-  facilitates reuse of the models in a different context.}
-
-\noindent \plt{The relationships between the parts of the document are show in
-  the following figure.  In this diagram ``may ref'' has the same role as
-  ``uses'' above.  The figure adds ``Likely Changes,'' which are able to
-  reference (use) Assumptions.}
-
-\begin{figure}[H]
-  \includegraphics[scale=0.9]{RelationsBetweenTM_GD_IM_DD_A.pdf}
-\end{figure}
-
-The instance models that govern \progname{} are presented in
-Subsection~\ref{sec_instance}.  The information to understand the meaning of the
-instance models and their derivation is also presented, so that the instance
-models can be verified.
-
-\subsubsection{Types}
-
-\plt{This section is optional. Defining types can make the document easier to
-understand.}
-
-\subsection{Scope Decisions}
-
-\plt{This section is optional.}
-\subsection{Modelling Decisions}
-
-\plt{This section is optional.}
+This section elaborates on the mathematical and physical principles that form 
+the basis of the solution, including assumptions, theoretical models, general 
+definitions, and the derivation of instance models.
 
 \subsubsection{Assumptions} \label{sec_assumpt}
-
-\plt{The assumptions are a refinement of the scope.  The scope is general, where
-  the assumptions are specific.  All assumptions should be listed, even those
-  that domain experts know so well that they are rarely (if ever) written down.}
-\plt{The document should not take for granted that the reader knows which
-  assumptions have been made. In the case of unusual assumptions, it is
-  recommended that the documentation either include, or point to, an explanation
-  and justification for the assumption.}
-\plt{If it helps with the organization and understandability, the assumptions can be presented as sub sections.  The following sub-sections are options: background theory assumptions, helper theory assumptions, generic theory assumptions, problem specific assumptions, and rationale assumptions}
 
 This section simplifies the original problem and helps in developing the
 theoretical model by filling in the missing information for the physical system.
@@ -574,97 +501,101 @@ general definition [GD], data definition [DD], instance model [IM], or likely
 change [LC], in which the respective assumption is used.
 
 \begin{itemize}
-
 \item[A\refstepcounter{assumpnum}\theassumpnum \label{A_meaningfulLabel}:]
-  \plt{Short description of each assumption.  Each assumption
-    should have a meaningful label.  Use cross-references to identify the
-    appropriate traceability to TM, GD, DD etc., using commands like dref, ddref
-    etc.  Each assumption should be atomic - that is, there should not be an
-    explicit (or implicit) ``and'' in the text of an assumption.}
-
+\textbf{Constant Mass [TM, DD]:} The mass (m) of the oscillator is constant throughout the motion.
+\item[A\refstepcounter{assumpnum}\theassumpnum \label{A_meaningfulLabel}:]
+\textbf{Homogeneous Medium [TM, GD]:} Assumes the oscillator moves through a homogeneous medium, affecting the damping forces uniformly across the system.
+\item[A\refstepcounter{assumpnum}\theassumpnum \label{A_meaningfulLabel}:]
+\textbf{No External Forces [TM]:} External forces, other than damping and restoring forces, are neglected.
+\item[A\refstepcounter{assumpnum}\theassumpnum \label{A_meaningfulLabel}:]
+\textbf{Initial Conditions Known [IM]:} The initial position and velocity of the oscillator are known and specified.
 \end{itemize}
 
 \subsubsection{Theoretical Models}\label{sec_theoretical}
 
-\plt{Theoretical models are sets of abstract mathematical equations or axioms
-  for solving the problem described in Section ``Physical System Description''
-  (Section~\ref{sec_phySystDescrip}). Examples of theoretical models are
-  physical laws, constitutive equations, relevant conversion factors, etc.}
-
-\plt{Optionally the theory section could be divided into subsections to provide more structure and improve understandability and reusability.  Potential subsections include the following: Context theories, background theories, helper theories, generic theories, problem specific theories, final theories and rationale theories.}
-
-This section focuses on the general equations and laws that \progname{} is based
-on.  \plt{Modify the examples below for your problem, and add additional models
-  as appropriate.}
+Theoretical models provide the mathematical foundation necessary for understanding and solving the dynamics of damped harmonic oscillators. These models incorporate physical laws and constitutive equations that describe how the system behaves under various conditions, including both linear and non-linear damping forces. The models are crucial for predicting system behavior and formulating solutions that can be applied in practical scenarios.
 
 ~\newline
 
 \noindent
 \deftheory
 % #2 refname of theory
-{TM:COE}
+{TM:EOM-LDHO}
 % #3 label
-{Conservation of thermal energy}
+{Equation of Motion for Linearly Damped Harmonic Oscillators}
 % #4 equation
 {
-  $-{\bf \nabla \cdot q} + g$ = $\rho C \frac{\partial T}{\partial t}$
+  \begin{equation*}
+    m*d\textsuperscript{2}x/dt\textsuperscript{2} + c*dx/dt + kx = 0
+  \end{equation*}
 }
 % #5 description
 {
-  The above equation gives the conservation of energy for transient heat transfer in a material
-  of specific heat capacity $C$ (\si{\joule\per\kilogram\per\celsius}) and density $\rho$ 
-  (\si{\kilogram\per\cubic\metre}), where $\bf q$ is the thermal flux vector (\si{\watt\per\square\metre}),
-  $g$ is the volumetric heat generation
-  (\si{\watt\per\cubic\metre}), $T$ is the temperature
-  (\si{\celsius}),  $t$ is time (\si{\second}), and $\nabla$ is
-  the gradient operator.  For this equation to apply, other forms
-  of energy, such as mechanical energy, are assumed to be negligible in the
-  system (\aref{A_OnlyThermalEnergy}).  In general, the material properties ($\rho$ and $C$) depend on temperature.
+  This equation models the motion of a damped harmonic oscillator, where $m$ is the mass of the oscillator, 
+  $dx/dt$, $d\textsuperscript{2}x/dt\textsuperscript{2}$ represent the velocity and acceleration, respectively, 
+  $c$ is the damping coefficient for linear damping, $k$ is the spring constant.
 }
 % #6 Notes
 {
-None.
+  None.
 }
 % #7 Source
 {
-  \url{http://www.efunda.com/formulae/heat_transfer/conduction/overview_cond.cfm}
+  None
 }
 % #8 Referenced by
 {
-  \dref{ROCT}
+  None
 }
 % #9 Preconditions
 {
-None
+  Assumes that the oscillator is subject to a restoring force proportional to displacement $x$ from equilibrium and a damping force that is linearly proportional to velocity.
 }
 % #1 derivation - not applicable by default
 {}
 
-\plt{``Ref.\ By'' is used repeatedly with the different types of information.
-  This stands for Referenced By.  It means that the models, definitions and
-  assumptions listed reference the current model, definition or assumption.
-  This information is given for traceability.  Ref. By provides a pointer in the
-  opposite direction to what we commonly do.  You still need to have a reference
-  in the other direction pointing to the current model, definition or
-  assumption.  As an example, if TM1 is referenced by GD2, that means that GD2 will
-  explicitly include a reference to TM1.}
+\deftheory
+% #2 refname of theory
+{TM:EOM-NDHO}
+% #3 label
+{Equation of Motion for Non-Linearly Damped Harmonic Oscillators}
+% #4 equation
+{
+  \begin{equation*}
+    m*d\textsuperscript{2}x/dt\textsuperscript{2} + f(dx/dt) + kx = 0
+  \end{equation*}
+}
+% #5 description
+{
+  This equation models the motion of a damped harmonic oscillator, where $m$ is the mass of the oscillator, 
+  $dx/dt$, $d\textsuperscript{2}x/dt\textsuperscript{2}$ represent the velocity and acceleration, respectively, 
+  $f(dx/dt)$ represents the function describing non-linear damping forces, $k$ is the spring constant.
+}
+% #6 Notes
+{
+  None.
+}
+% #7 Source
+{
+  None
+}
+% #8 Referenced by
+{
+  None
+}
+% #9 Preconditions
+{
+  Assumes that the oscillator is subject to a restoring force proportional to displacement $x$ from equilibrium and a damping force that follows non-linear relationship.
+}
+% #1 derivation - not applicable by default
+{}
 
 ~\newline
 
 \subsubsection{General Definitions}\label{sec_gendef}
 
-\plt{General Definitions (GDs) are a refinement of one or more TMs, and/or of
-  other GDs.  The GDs are less abstract than the TMs.  Generally the reduction
-  in abstraction is possible through invoking (using/referencing) Assumptions.
-  For instance, the TM could be Newton's Law of Cooling stated abstracting.  The
-  GD could take the general law and apply it to get a 1D equation.}
-
 This section collects the laws and equations that will be used in building the
 instance models.
-
-\plt{Some projects may not have any content for this section, but the section
-  heading should be kept.}  \plt{Modify the examples below for your problem, and
-  add additional definitions as appropriate.}
 
 ~\newline
 
@@ -676,54 +607,121 @@ instance models.
 \rowcolor[gray]{0.9}
 Number& GD\refstepcounter{defnum}\thedefnum \label{NL}\\
 \hline
-Label &\bf Newton's law of cooling \\
+Label &\bf Damping Force \\
 \hline
 % Units&$MLt^{-3}T^0$\\
 % \hline
-SI Units&\si{\watt\per\square\metre}\\
+SI Units&\si{\newton}(Newton)\\
 \hline
-Equation&$ q(t) = h \Delta T(t)$  \\
+Equation& 
+$ 
+F\textsubscript{damping}=-c*dx/dt 
+$ -- Linear Damping
+\newline
+$ 
+F\textsubscript{damping}=-f(dx/dt)
+$ -- Non-Linear Damping
+\\
 \hline
 Description &
-Newton's law of cooling describes convective cooling from a surface.  The law is
-stated as: the rate of heat loss from a body is proportional to the difference
-in temperatures between the body and its surroundings.
-\\
-& $q(t)$ is the thermal flux (\si{\watt\per\square\metre}).\\
-& $h$ is the heat transfer coefficient, assumed independent of $T$ (\aref{A_hcoeff})
-	(\si{\watt\per\square\metre\per\celsius}).\\
-&$\Delta T(t)$= $T(t) - T_{\text{env}}(t)$ is the time-dependent thermal gradient
-between the environment and the object (\si{\celsius}).
+This definition differentiates between the damping forces in linear and 
+non-linear systems. For linear systems, the force is proportional to the 
+velocity$(dx/dt)$ with a constant$c$. In contrast, non-linear systems 
+exhibit a damping force represented by $f(dx/dt)$, indicating a dependency 
+on the velocity's magnitude or other factors.
 \\
 \hline
-  Source & Citation here \\
+  Source & Hadley, Mark. "Damped Harmonic Oscillator" Department of Physics, Graz University of Technology \\
   \hline
-  Ref.\ By & \ddref{FluxCoil}, \ddref{FluxPCM}\\
+  Ref.\ By & \ddref{IM1}, \ddref{DD1}\\
   \hline
 \end{tabular}
 \end{minipage}\\
 
-\subsubsection*{Detailed derivation of simplified rate of change of temperature}
+~\newline
 
-\plt{This may be necessary when the necessary information does not fit in the
-  description field.}
-\plt{Derivations are important for justifying a given GD.  You want it to be
-  clear where the equation came from.}
+\noindent
+\begin{minipage}{\textwidth}
+\renewcommand*{\arraystretch}{1.5}
+\begin{tabular}{| p{\colAwidth} | p{\colBwidth}|}
+\hline
+\rowcolor[gray]{0.9}
+Number& GD\refstepcounter{defnum}\thedefnum \label{NL}\\
+\hline
+Label &\bf Natural Frequency of Oscillation \\
+\hline
+% Units&$MLt^{-3}T^0$\\
+% \hline
+SI Units&\si{\hertz}(Hertz)\\
+\hline
+Equation& 
+$ 
+\omega\textsubscript{0}=\sqrt{k/m} 
+$
+\\
+\hline
+Description &
+This equation provides the natural frequency$(w\textsubscript{0})$ of an 
+undamped harmonic oscillator, derived from the spring constant$(k)$ and 
+mass$(m)$. It signifies the oscillator's inherent vibrational frequency 
+absent damping forces.
+\\
+\hline
+  Source & Hadley, Mark. "Damped Harmonic Oscillator" Department of Physics, Graz University of Technology \\
+  \hline
+  Ref.\ By & \ddref{IM1}, \ddref{DD3}, \ddref{DD4}\\
+  \hline
+\end{tabular}
+\end{minipage}\\
+
+~\newline
+
+\noindent
+\begin{minipage}{\textwidth}
+\renewcommand*{\arraystretch}{1.5}
+\begin{tabular}{| p{\colAwidth} | p{\colBwidth}|}
+\hline
+\rowcolor[gray]{0.9}
+Number& GD\refstepcounter{defnum}\thedefnum \label{NL}\\
+\hline
+Label &\bf Energy Dissipation \\
+\hline
+% Units&$MLt^{-3}T^0$\\
+% \hline
+SI Units&\si{\joule}(Joules)\\
+\hline
+Equation& 
+\textbf{Total Energy:} $ 
+E=1/2*kx^{2}+1/2*mv^{2}
+$
+\newline
+\textbf{Linear Damping Dissipation Rate:} $ 
+dE/dt=-c*dx/dt
+$
+\newline
+\textbf{Non-Linear Damping:} Energy Dissipation rate varies with $ 
+f(dx/dt) 
+$
+\\
+\hline
+Description &
+Outlines how the oscillator's total mechanical energy is influenced by 
+damping. In linear damping scenarios, energy dissipation is directly 
+proportional to the square of velocity, while in non-linear scenarios, 
+it is dictated by a function of velocity, $f(dx/dt)$.
+\\
+\hline
+  Source & Hadley, Mark. "Damped Harmonic Oscillator" Department of Physics, Graz University of Technology \\
+  \hline
+  Ref.\ By & \ddref{IM1}, \ddref{DD3}, \ddref{DD4}\\
+  \hline
+\end{tabular}
+\end{minipage}\\
 
 \subsubsection{Data Definitions}\label{sec_datadef}
 
-\plt{The Data Definitions are definitions of symbols and equations that are
-  given for the problem.  They are not derived; they are simply used by other
-  models.  For instance, if a problem depends on density, there may be a data
-  definition for the equation defining density.  The DDs are given information
-  that you can use in your other modules.}
-
-\plt{All Data Definitions should be used (referenced) by at least one other
-  model.}
-
 This section collects and defines all the data needed to build the instance
-models. The dimension of each quantity is also given.  \plt{Modify the examples
-  below for your problem, and add additional definitions as appropriate.}
+models. The dimension of each quantity is also given.
 
 ~\newline
 
@@ -735,53 +733,30 @@ models. The dimension of each quantity is also given.  \plt{Modify the examples
 \rowcolor[gray]{0.9}
 Number& DD\refstepcounter{datadefnum}\thedatadefnum \label{FluxCoil}\\
 \hline
-Label& \bf Heat flux out of coil\\
+Label& \bf Damping Coefficient\\
 \hline
-Symbol &$q_C$\\
+Symbol & $c$ (linear damping), $f(dx/dt)$ (non-linear damping)\\
 \hline
 % Units& $Mt^{-3}$\\
 % \hline
-  SI Units & \si{\watt\per\square\metre}\\
+  SI Units & \si{\kilogram\per\second}\\
   \hline
-  Equation&$q_C(t) = h_C (T_C - T_W(t))$, over area $A_C$\\
+  Equation& -\\
   \hline
   Description & 
-                $T_C$ is the temperature of the coil (\si{\celsius}).  $T_W$ is the temperature of the water (\si{\celsius}).  
-                The heat flux out of the coil, $q_C$ (\si{\watt\per\square\metre}), is found by
-                assuming that Newton's Law 
-                of Cooling applies (\aref{A_Newt_coil}).  This law (\dref{NL}) is used on the surface of
-                the coil, which has area $A_C$ (\si{\square\metre}) and heat 
-                transfer coefficient $h_C$
-                (\si{\watt\per\square\metre\per\celsius}).  This equation
-                assumes that the temperature of the coil is constant over time (\aref{A_tcoil}) and that it does not vary along the length
-                of the coil (\aref{A_tlcoil}).
+  For linear damping, $c$ represents the constant proportionality factor 
+  between the damping force and the velocity of the oscillator. For 
+  non-linear damping, $f(dx/dt)$ represents a function defining the 
+  relationship between the damping force and the velocity, which varies 
+  with the velocity's magnitude or other system-specific factors.
   \\
   \hline
-  Sources& Citation here \\
+  Sources& "Damped Harmonic Oscillator" -- Wikipedia \\
   \hline
   Ref.\ By & \iref{ewat}\\
   \hline
 \end{tabular}
 \end{minipage}\\
-
-\subsubsection{Data Types}\label{sec_datatypes}
-
-\plt{This section is optional.  In many scientific computing programs it isn't
-  necessary, since the inputs and outpus are straightforward types, like reals,
-  integers, and sequences of reals and integers.  However, for some problems it
-  is very helpful to capture the type information.}
-
-\plt{The data types are not derived; they are simply stated and used by other
-  models.}
-
-\plt{All data types must be used by at least one of the models.}
-
-\plt{For the mathematical notation for expressing types, the recommendation is
-  to use the notation of~\citet{HoffmanAndStrooper1995}.}
-
-This section collects and defines all the data types needed to document the
-models. \plt{Modify the examples below for your problem, and add additional
-  definitions as appropriate.}
 
 ~\newline
 
@@ -789,37 +764,144 @@ models. \plt{Modify the examples below for your problem, and add additional
 \begin{minipage}{\textwidth}
 \renewcommand*{\arraystretch}{1.5}
 \begin{tabular}{| p{\colAwidth} | p{\colBwidth}|}
+\hline
+\rowcolor[gray]{0.9}
+Number& DD\refstepcounter{datadefnum}\thedatadefnum \label{FluxCoil}\\
+\hline
+Label& \bf Mass\\
+\hline
+Symbol & $m$\\
+\hline
+% Units& $Mt^{-3}$\\
+% \hline
+  SI Units & \si{\kilogram}\\
   \hline
-  \rowcolor[gray]{0.9}
-  Type Name & Name for Type\\
+  Equation& -\\
   \hline
-  Type Def & mathematical definition of the type\\
-  \hline
-  Description & description here
+  Description & 
+  Represents the mass of the harmonic oscillator. The mass is a crucial 
+  parameter in determining the system's natural frequency and the dynamics 
+  of its motion under damping forces.
   \\
   \hline
-  Sources & Citation here, if the type is borrowed from another source\\
+  Sources& "Damped Harmonic Oscillator" -- Wikipedia \\
+  \hline
+  Ref.\ By & \iref{GD2}\\
   \hline
 \end{tabular}
 \end{minipage}\\
 
-\subsubsection{Instance Models} \label{sec_instance}    
+~\newline
 
-\plt{The motivation for this section is to reduce the problem defined in
-  ``Physical System Description'' (Section~\ref{sec_phySystDescrip}) to one
-  expressed in mathematical terms. The IMs are built by refining the TMs and/or
-  GDs.  This section should remain abstract.  The SRS should specify the
-  requirements without considering the implementation.}
+\noindent
+\begin{minipage}{\textwidth}
+\renewcommand*{\arraystretch}{1.5}
+\begin{tabular}{| p{\colAwidth} | p{\colBwidth}|}
+\hline
+\rowcolor[gray]{0.9}
+Number& DD\refstepcounter{datadefnum}\thedatadefnum \label{FluxCoil}\\
+\hline
+Label& \bf Spring Constant\\
+\hline
+Symbol & $k$\\
+\hline
+% Units& $Mt^{-3}$\\
+% \hline
+  SI Units & \si{\newton\per\metre}\\
+  \hline
+  Equation& -\\
+  \hline
+  Description & 
+  The spring constant $k$ quantifies the stiffness of the spring in the 
+  harmonic oscillator. It is a key factor in defining the natural 
+  frequency of the oscillator and its response to applied forces.
+  \\
+  \hline
+  Sources& "Damped Harmonic Oscillator" -- Wikipedia \\
+  \hline
+  Ref.\ By & \iref{GD2}\\
+  \hline
+\end{tabular}
+\end{minipage}\\
+
+~\newline
+
+\noindent
+\begin{minipage}{\textwidth}
+\renewcommand*{\arraystretch}{1.5}
+\begin{tabular}{| p{\colAwidth} | p{\colBwidth}|}
+\hline
+\rowcolor[gray]{0.9}
+Number& DD\refstepcounter{datadefnum}\thedatadefnum \label{FluxCoil}\\
+\hline
+Label& \bf Natural Frequency\\
+\hline
+Symbol & $\omega_{0}$\\
+\hline
+% Units& $Mt^{-3}$\\
+% \hline
+  SI Units & \si{\radian\per\second}\\
+  \hline
+  Equation& -\\
+  \hline
+  Description & 
+  The natural frequency $\omega_{0}$ of an undamped harmonic oscillator 
+  is determined by its mass $m$ and spring constant $k$. This frequency 
+  is foundational for analyzing the oscillator's behavior in the absence 
+  of damping forces.
+  \\
+  \hline
+  Sources& "Damped Harmonic Oscillator" -- Wikipedia \\
+  \hline
+  Ref.\ By & \iref{IM2}\\
+  \hline
+\end{tabular}
+\end{minipage}\\
+
+~\newline
+
+\noindent
+\begin{minipage}{\textwidth}
+\renewcommand*{\arraystretch}{1.5}
+\begin{tabular}{| p{\colAwidth} | p{\colBwidth}|}
+\hline
+\rowcolor[gray]{0.9}
+Number& DD\refstepcounter{datadefnum}\thedatadefnum \label{FluxCoil}\\
+\hline
+Label& \bf Displacement\\
+\hline
+Symbol & $x$\\
+\hline
+% Units& $Mt^{-3}$\\
+% \hline
+  SI Units & \si{\metre}\\
+  \hline
+  Equation& -\\
+  \hline
+  Description & 
+  Displacement $x$ from the equilibrium position provides a measure of 
+  how far the oscillator moves over time. It is a fundamental quantity 
+  for describing the oscillator's motion and is affected by both damping 
+  forces and the system's natural dynamics.from the equilibrium position 
+  provides a measure of how far the oscillator moves over time. It is a 
+  fundamental quantity for describing the oscillator's motion and is 
+  affected by both damping forces and the system's natural dynamics.
+  \\
+  \hline
+  Sources& "Damped Harmonic Oscillator" -- Wikipedia \\
+  \hline
+  Ref.\ By & \iref{GD1}(Damping Force for Linear and Non-Linear Systems),
+  \iref{IM1} (Displacement and Velocity Over Time)\\
+  \hline
+\end{tabular}
+\end{minipage}\\
+
+\subsubsection{Instance Models} \label{sec_instance}
 
 This section transforms the problem defined in Section~\ref{Sec_pd} into 
 one which is expressed in mathematical terms. It uses concrete symbols defined 
 in Section~\ref{sec_datadef} to replace the abstract symbols in the models 
 identified in Sections~\ref{sec_theoretical} and~\ref{sec_gendef}.
-
-The goals \plt{reference your goals} are solved by \plt{reference your instance
-  models}.  \plt{other details, with cross-references where appropriate.}
-\plt{Modify the examples below for your problem, and add additional models as
-  appropriate.}
 
 ~\newline
 
@@ -833,27 +915,24 @@ The goals \plt{reference your goals} are solved by \plt{reference your instance
   \rowcolor[gray]{0.9}
   Number& IM\refstepcounter{instnum}\theinstnum \label{ewat}\\
   \hline
-  Label& \bf Energy balance on water to find $T_W$\\
+  Label& \bf Equation of Motion\\
   \hline
-  Input&$m_W$, $C_W$, $h_C$, $A_C$, $h_P$, $A_P$, $t_\text{final}$, $T_C$, 
-  $T_\text{init}$, $T_P(t)$ from \iref{epcm}\\
-  & The input is constrained so that $T_\text{init} \leq T_C$ (\aref{A_charge})\\
+  Input&Mass of the oscillator $m$, damping coefficient $c$ or $f(dx/dt)$, 
+  spring constant $k$, initial displacement $x_{0}$, initial velocity $v_{0}$.\\
   \hline
-  Output&$T_W(t)$, $0\leq t \leq t_\text{final}$, such that\\
-  &$\frac{dT_W}{dt} = \frac{1}{\tau_W}[(T_C - T_W(t)) + {\eta}(T_P(t) - T_W(t))]$,\\
-  &$T_W(0) = T_P(0) = T_\text{init}$ (\aref{A_InitTemp}) and $T_P(t)$ from \iref{epcm} \\
+  Output&Displacement $x{t}$ as a function of time $t$, Velocity $v(t)$ 
+  as a function of time $t$.\\
   \hline
-  Description&$T_W$ is the water temperature (\si{\celsius}).\\
-  &$T_P$ is the PCM temperature (\si{\celsius}).\\
-  &$T_C$ is the coil temperature (\si{\celsius}).\\
-  &$\tau_W = \frac{m_W C_W}{h_C A_C}$ is a constant (\si{\second}).\\
-  &$\eta = \frac{h_P A_P}{h_C A_C}$ is a constant (dimensionless).\\
-  & The above equation applies as long as the water is in liquid form,
-  $0<T_W<100^o\text{C}$, where $0^o\text{C}$ and $100^o\text{C}$ are the melting
-  and boiling points of water, respectively (\aref{A_OpRange}, \aref{A_Pressure}).
+  Description&This model describes the motion of a damped harmonic oscillator by 
+  incorporating linear or non-linear damping forces. The equation of motion 
+  for linear damping is given by $m*d\textsuperscript{2}x/dt\textsuperscript{2} 
+  + f(dx/dt) + kx = 0$, and for non-linear damping, it is modified to include a 
+  non-linear damping term, represented by $f(dx/dt)$, affecting the velocity term.
   \\
   \hline
-  Sources& Citation here \\
+  Sources& Derived from the principles of mechanics as discussed in the provided 
+  Wikipedia link and the Graz University of Technology's resource on damped 
+  harmonic oscillators. \\
   \hline
   Ref.\ By & \iref{epcm}\\
   \hline
@@ -862,11 +941,53 @@ The goals \plt{reference your goals} are solved by \plt{reference your instance
 
 %~\newline
 
-\subsubsection*{Derivation of ...}
+\subsubsection*{Derivation of Equation of Motion}
 
-\plt{The derivation shows how the IM is derived from the TMs/GDs.  In cases
-  where the derivation cannot be described under the Description field, it will
-  be necessary to include this subsection.}
+The equation is derived from Newton's second law of motion, $F=ma$, with force 
+contributions from both the spring $(-kx)$ and the damping force ($-c*dx/dt$ 
+or $-f(dx/dt)$). 
+
+~\newline
+
+%Instance Model 2
+
+\noindent
+\begin{minipage}{\textwidth}
+\renewcommand*{\arraystretch}{1.5}
+\begin{tabular}{| p{\colAwidth} | p{\colBwidth}|}
+  \hline
+  \rowcolor[gray]{0.9}
+  Number& IM\refstepcounter{instnum}\theinstnum \label{ewat}\\
+  \hline
+  Label& \bf Energy Dissipation\\
+  \hline
+  Input&Spring constant $k$, mass $m$, damping coefficient $c$ or $f(dx/dt)$ 
+  initial displacement $x_{0}$, initial velocity $v_{0}$.\\
+  \hline
+  Output&Total energy $E(t)$ of the system as a function of time $t$.\\
+  \hline
+  Description&This model quantifies the energy in the oscillator system and 
+  its rate of dissipation due to damping. For linear damping, the rate of 
+  energy dissipation is directly proportional to the square of the velocity, 
+  whereas, for non-linear damping, the dissipation rate is a function of 
+  velocity $f(dx/dt)$.
+  \\
+  \hline
+  Sources& Based on energy conservation principles and the work-energy 
+  theorem, adapted to include damping forces. \\
+  \hline
+  Ref.\ By & \iref{epcm}\\
+  \hline
+\end{tabular}
+\end{minipage}\\
+
+%~\newline
+
+\subsubsection*{Derivation of Energy Dissipation}
+
+The total mechanical energy $E(t)$ is given by the sum of kinetic and 
+potential energy. The rate of change of this energy $(dE/dt)$ reflects energy 
+dissipation due to damping.
 
 \subsubsection{Input Data Constraints} \label{sec_DataConstraints}    
 
@@ -893,38 +1014,89 @@ Table~\ref{TblSpecParams}.
   \textbf{Var} & \textbf{Physical Constraints} & \textbf{Software Constraints} &
                              \textbf{Typical Value} & \textbf{Uncertainty}\\
   \midrule 
-  $L$ & $L > 0$ & $L_{\text{min}} \leq L \leq L_{\text{max}}$ & 1.5 \si[per-mode=symbol] {\metre} & 10\%
-  \\
+  $m$ & $m > 0$ & $m_{\text{min}} \leq m \leq m_{\text{max}}$ & 1
+  \si[per-mode=symbol] {\kilogram} & 5\%\\
+
+  $k$ & $k > 0$ & $k_{\text{min}} \leq k \leq k_{\text{max}}$ & 200 
+  \si[per-mode=symbol] {\newton\per\meter} & 5\%\\
+
+  $c$ & $c \geq 0$ & $c_{\text{min}} \leq c \leq c_{\text{max}}$ & 5 
+  \si[per-mode=symbol] {\newton\second\per\meter} & 10\%\\
+
+  $x_{0}$ & $x_{0} \geq 0$ & $x_{0_{min}} \leq x_{0} \leq 
+  x_{0_{max}}$ & 0.1 \si[per-mode=symbol] {\meter} & 5\%\\
+
+  $v_{0}$ & No constraint & $v_{0_{min}} \leq v_{0} \leq 
+  v_{0_{max}}$ & 0 \si[per-mode=symbol] {\meter\per\second} & 5\%\\
   \bottomrule
 \end{longtable*}
 \end{table}
 
 \noindent 
 \begin{description}
-\item[(*)] \plt{you might need to add some notes or clarifications}
+\item[(*)] The software constraints are set to allow a wide range of scenarios, 
+facilitating experimentation with both common and unusual situations. 
+The specified typical values and uncertainties offer a baseline for standard 
+simulations and uncertainty quantification exercises.
 \end{description}
 
-\begin{table}[!h]
+\begin{table}[h]
 \caption{Specification Parameter Values} \label{TblSpecParams}
 \renewcommand{\arraystretch}{1.2}
 \noindent \begin{longtable*}{l l} 
   \toprule
   \textbf{Var} & \textbf{Value} \\
   \midrule 
-  $L_\text{min}$ & 0.1 \si{\metre}\\
+  $m_\text{min}$ & 0.1 \si{\kilogram}\\
+  $m_\text{max}$ & 10 \si{\kilogram}\\
+
+  $k_\text{min}$ & 50 \si{\newton\per\meter}\\
+  $k_\text{max}$ & 500 \si{\newton\per\meter}\\
+
+  $c_\text{min}$ & 0 \si{\newton\second\per\metre}\\
+  $c_\text{max}$ & 50 \si{\newton\second\per\metre}\\
+
+  $x_{0_{min}}$ & 0 \si{\metre}\\
+  $x_{0_{max}}$ & 1 \si{\metre}\\
+
+  $v_{0_{min}}$ & -10 \si{\metre\per\second}\\
+  $v_{0_{max}}$ & 10 \si{\metre\per\second}\\
   \bottomrule
 \end{longtable*}
 \end{table}
 
+\newpage
+
 \subsubsection{Properties of a Correct Solution} \label{sec_CorrectSolution}
 
 \noindent
-A correct solution must exhibit \plt{fill in the details}.  \plt{These
-  properties are in addition to the stated requirements.  There is no need to
-  repeat the requirements here.  These additional properties may not exist for
-  every problem.  Examples include conservation laws (like conservation of
-  energy or mass) and known constraints on outputs, which are usually summarized
-  in tabular form.  A sample table is shown in Table~\ref{TblOutputVar}}
+A correct solution must exhibit several fundamental physical principles and 
+constraints. These criteria ensure that the model accurately reflects the 
+behavior of real-world systems under both linear and non-linear damping 
+forces. Below is an overview of these essential properties, along with a 
+table summarizing the output variables and their physical constraints.
+
+\subsubsection*{Essential Properties}
+
+\begin{itemize}
+  \item \textbf{Conservation of Energy (when applicable):} In the absence of external 
+  forces, the total mechanical energy (kinetic plus potential) of the system 
+  should be conserved over a complete cycle of motion in an undamped 
+  oscillator. For damped oscillators, the solution must show a decrement in 
+  total energy over time, corresponding to the energy dissipated due to damping.
+  \item \textbf{Harmonic Motion:} The solution should exhibit characteristics of 
+  harmonic motion, with periodicity and amplitude consistent with the input 
+  parameters for the mass, spring constant, and damping coefficients.
+  \item \textbf{Damping Behavior:} For linear damping, the solution must reflect an 
+  exponential decay of motion amplitude over time. In the case of non-linear 
+  damping, the solution should demonstrate amplitude decay behavior that 
+  aligns with the non-linear damping force characteristics.
+  \item \textbf{Equilibrium State:} The long-term behavior of the oscillator should 
+  converge to a state of equilibrium, where the net force acting on the 
+  oscillator is zero, especially under damping conditions.
+  \item \textbf{Physical Realism:} The model's outputs must remain within physically 
+  plausible ranges, considering the initial conditions and system parameters.
+\end{itemize}
 
 \begin{table}[!h]
 \caption{Output Variables} \label{TblOutputVar}
@@ -933,15 +1105,12 @@ A correct solution must exhibit \plt{fill in the details}.  \plt{These
   \toprule
   \textbf{Var} & \textbf{Physical Constraints} \\
   \midrule 
-  $T_W$ & $T_\text{init} \leq T_W \leq T_C$ (by~\aref{A_charge})
-  \\
+  $x(t)$ & Must satisfy boundary conditions\\
+  $v(t)$ & Consistent with $x(t)$ and damping\\
+  $E(t)$ & Decreases over time for damped cases\\
   \bottomrule
 \end{longtable*}
 \end{table}
-
-\plt{This section is not for test cases or techniques for verification and
-  validation.  Those topics will be addressed in the Verification and Validation
-  plan.}
 
 \section{Requirements}
 

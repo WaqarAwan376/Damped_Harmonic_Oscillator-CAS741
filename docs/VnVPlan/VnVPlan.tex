@@ -17,7 +17,7 @@
 
 \begin{document}
 
-\title{Project Title: System Verification and Validation Plan for \progname{}} 
+\title{\progname: Damped Harmonic Oscillator Illustrated by Online Calculator} 
 \author{\authname}
 \date{\today}
 	
@@ -30,459 +30,579 @@
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
-Date 1 & 1.0 & Notes\\
-Date 2 & 1.1 & Notes\\
+19 Feb, 2024 & 1.0 & Initial VnV document\\
 \bottomrule
 \end{tabularx}
-
-~\\
-\wss{The intention of the VnV plan is to increase confidence in the software.
-However, this does not mean listing every verification and validation technique
-that has ever been devised.  The VnV plan should also be a \textbf{feasible}
-plan. Execution of the plan should be possible with the time and team available.
-If the full plan cannot be completed during the time available, it can either be
-modified to ``fake it'', or a better solution is to add a section describing
-what work has been completed and what work is still planned for the future.}
-
-\wss{The VnV plan is typically started after the requirements stage, but before
-the design stage.  This means that the sections related to unit testing cannot
-initially be completed.  The sections will be filled in after the design stage
-is complete.  the final version of the VnV plan should have all sections filled
-in.}
 
 \newpage
 
 \tableofcontents
 
-\listoftables
-\wss{Remove this section if it isn't needed}
-
-\listoffigures
-\wss{Remove this section if it isn't needed}
-
 \newpage
+\pagenumbering{arabic}
 
 \section{Symbols, Abbreviations, and Acronyms}
 
-\renewcommand{\arraystretch}{1.2}
-\begin{tabular}{l l} 
-  \toprule		
-  \textbf{symbol} & \textbf{description}\\
-  \midrule 
-  T & Test\\
-  \bottomrule
-\end{tabular}\\
-
-\wss{symbols, abbreviations, or acronyms --- you can simply reference the SRS
-  \citep{SRS} tables, if appropriate}
-
-\wss{Remove this section if it isn't needed}
+As part of the comprehensive Verification and Validation (V\&V) Plan for this project, in 
+order to ensure clarity and consistency in the use of symbols, abbreviations, and 
+acronyms, we direct all project stakeholders and team members to the Software Requirements 
+Specification (SRS) document. Specifically, Section 1 of the SRS document, along with its 
+Subsections 1.2 and 1.3, provide a thorough definition and explanation of all symbols, 
+abbreviations, and acronyms employed throughout the project documentation and 
+implementation. 
 
 \newpage
 
-\pagenumbering{arabic}
-
-This document ... \wss{provide an introductory blurb and roadmap of the
-  Verification and Validation plan}
+This document outlines the Verification and Validation (VnV) Plan for a 
+project focused on simulating the dynamics of damped harmonic oscillators. It provides 
+a comprehensive framework for ensuring the software's correctness, reliability, and 
+usability in modeling oscillatory systems under various damping conditions. The plan 
+covers a range of testing strategies, from input validation and functionality tests to 
+non-functional assessments such as usability and maintainability. Additionally, it 
+details the approach for aligning software implementation with the outlined requirements, 
+ensuring a thorough evaluation across different operating systems. This roadmap guides the 
+project's VnV efforts, aiming for high accuracy and user satisfaction.
 
 \section{General Information}
 
 \subsection{Summary}
 
-\wss{Say what software is being tested.  Give its name and a brief overview of
-  its general functions.}
+The software being tested is named ``\progname(DHO)''. It is designed to simulate the 
+dynamics of harmonic oscillators subjected to both linear and non-linear damping forces. 
+DHO offers a detailed representation of oscillatory systems through  numerical solutions 
+to differential equations, providing insights into their behavior under various damping 
+conditions.
 
 \subsection{Objectives}
 
-\wss{State what is intended to be accomplished.  The objective will be around
-  the qualities that are most important for your project.  You might have
-  something like: ``build confidence in the software correctness,''
-  ``demonstrate adequate usability.'' etc.  You won't list all of the qualities,
-  just those that are most important.}
+The primary objective is to build confidence in the software's correctness and ensure its 
+reliability in modeling damped oscillatory systems accurately. Another crucial goal is 
+to demonstrate the software's adequacy in usability for educational and research purposes 
+in physics and engineering. 
+Following are some of the objectives that are out of scope:
 
-\wss{You should also list the objectives that are out of scope.  You don't have 
-the resources to do everything, so what will you be leaving out.  For instance, 
-if you are not going to verify the quality of usability, state this.  It is also 
-worthwhile to justify why the objectives are left out.}
-
-\wss{The objectives are important because they highlight that you are aware of 
-limitations in your resources for verification and validation.  You can't do everything, 
-so what are you going to prioritize?  As an example, if your system depends on an 
-external library, you can explicitly state that you will assume that external library 
-has already been verified by its implementation team.}
+\begin{itemize}
+  \item We will not verify the quality of usability in terms of user interface design 
+  beyond basic functionality and accessibility. This is due to limited resources and the 
+  project's primary focus on the accuracy of simulation results.
+  \item The project will assume that all external libraries used for numerical 
+  computations and graphical representations are already verified by their respective 
+  development teams. This assumption allows us to concentrate our resources on the core 
+  functionalities of our software.
+\end{itemize}
 
 \subsection{Relevant Documentation}
 
-\wss{Reference relevant documentation.  This will definitely include your SRS
-  and your other project documents (design documents, like MG, MIS, etc).  You
-  can include these even before they are written, since by the time the project
-  is done, they will be written.}
-
-\citet{SRS}
-
-\wss{Don't just list the other documents.  You should explain why they are relevant and 
-how they relate to your VnV efforts.}
+Relevant documentation includes the Software Requirement Specification (SRS) document, 
+which outlines the functional and non-functional requirements of the project. 
+Additionally, design documents, such as the Module Guide (MG) and Module Interface 
+Specification (MIS), are crucial as they detail the software's architecture and 
+interaction interfaces. These documents are relevant to the Verification and Validation 
+(VnV) efforts as they provide a foundation for testing strategies, ensuring that every 
+aspect of the software is tested against the specified requirements and designs. By 
+aligning VnV activities with these documents, we ensure a comprehensive evaluation of 
+the software's functionality, reliability, and usability.
 
 \section{Plan}
 
-\wss{Introduce this section.   You can provide a roadmap of the sections to
-  come.}
+This section details the verification and validation (VnV) plan for the harmonic 
+oscillator simulation project, designed and implemented as an individual, focusing on 
+backend calculations and REST API functionality using Python/Flask, with ReactJS for the 
+frontend.
 
 \subsection{Verification and Validation Team}
 
-\wss{Your teammates.  Maybe your supervisor.
-  You should do more than list names.  You should say what each person's role is
-  for the project's verification.  A table is a good way to summarize this information.}
+As the sole contributor to this project, I will be responsible for all testing efforts. 
+To enhance the robustness of the VnV process, I will take the help of two peers for 
+review purposes: a primary reviewer and a secondary reviewer. These reviewers will 
+provide feedback and insights to ensure the software's quality and checking if the 
+requirements are met. Their roles will involve critiquing the design, testing strategy, 
+and overall identification of any potential issues or areas for improvement in the project.
 
 \subsection{SRS Verification Plan}
 
-\wss{List any approaches you intend to use for SRS verification.  This may include
-  ad hoc feedback from reviewers, like your classmates, or you may plan for 
-  something more rigorous/systematic.}
-
-\wss{Maybe create an SRS checklist?}
+The SRS verification will involve a detailed review against a comprehensive checklist I 
+will create, ensuring all functional and non-functional requirements are met. This 
+checklist will be based on the specifications detailed in the SRS document. The SRS 
+verification will also involve a review process, with the inclusion of a primary and a 
+secondary reviewer.
 
 \subsection{Design Verification Plan}
 
-\wss{Plans for design verification}
-
-\wss{The review will include reviews by your classmates}
-
-\wss{Create a checklists?}
+Given the individual nature of this project, design verification will focus on ensuring 
+that the software's architecture and system design align with the outlined specifications 
+and best practices for Python/Flask and ReactJS applications. The design verification will 
+also incorporate a dual-peer review process, involving a primary and a secondary reviewer, 
+to ensure a thorough examination of the software's architecture and system design.
 
 \subsection{Verification and Validation Plan Verification Plan}
 
-\wss{The verification and validation plan is an artifact that should also be
-verified.  Techniques for this include review and mutation testing.}
-
-\wss{The review will include reviews by your classmates}
-
-\wss{Create a checklists?}
+This step will involve a critical review of the VnV plan itself to ensure its adequacy 
+and comprehensiveness. Adjustments will be made based on findings to improve the overall 
+VnV strategy. The verification and validation (VnV) plan itself will undergo a review 
+process involving both a primary and a secondary peer reviewer.
 
 \subsection{Implementation Verification Plan}
 
-\wss{You should at least point to the tests listed in this document and the unit
-  testing plan.}
-
-\wss{In this section you would also give any details of any plans for static
-  verification of the implementation.  Potential techniques include code
-  walkthroughs, code inspection, static analyzers, etc.}
+The Implementation Verification Plan will include dynamic testing with unit tests 
+primarily utilizing the PyTest framework for the Python/Flask backend. PyTest is chosen 
+for its extensive support for testing Python applications, allowing for efficient testing 
+of individual components and integration points. Static verification methods will 
+include code walkthroughs, code inspections, and the use of static analyzers like Flake8 
+or Pylint to ensure code quality and adherence to coding standards. This blend of dynamic 
+and static testing ensures a thorough validation of the software's functionality and 
+reliability.
 
 \subsection{Automated Testing and Verification Tools}
 
-\wss{What tools are you using for automated testing.  Likely a unit testing
-  framework and maybe a profiling tool, like ValGrind.  Other possible tools
-  include a static analyzer, make, continuous integration tools, test coverage
-  tools, etc.  Explain your plans for summarizing code coverage metrics.
-  Linters are another important class of tools.  For the programming language
-  you select, you should look at the available linters.  There may also be tools
-  that verify that coding standards have been respected, like flake9 for
-  Python.}
-
-\wss{If you have already done this in the development plan, you can point to
-that document.}
-
-\wss{The details of this section will likely evolve as you get closer to the
-  implementation.}
+For automated testing, the PyTest framework will be used for unit testing the Python/Flask 
+components, due to its robustness and ease of use. For static code analysis, Flake8 will 
+serve as the primary linter, ensuring code quality and adherence to Python coding 
+standards. GitHub Actions will automate the CI/CD pipeline, running tests and linting on 
+every push to ensure continuous quality. Code coverage metrics will be summarized using 
+the coverage.py tool, providing insights into untested parts of the codebase to improve 
+test completeness.
 
 \subsection{Software Validation Plan}
 
-\wss{If there is any external data that can be used for validation, you should
-  point to it here.  If there are no plans for validation, you should state that
-  here.}
-
-\wss{You might want to use review sessions with the stakeholder to check that
-the requirements document captures the right requirements.  Maybe task based
-inspection?}
-
-\wss{For those capstone teams with an external supervisor, the Rev 0 demo should 
-be used as an opportunity to validate the requirements.  You should plan on 
-demonstrating your project to your supervisor shortly after the scheduled Rev 0 demo.  
-The feedback from your supervisor will be very useful for improving your project.}
-
-\wss{For teams without an external supervisor, user testing can serve the same purpose 
-as a Rev 0 demo for the supervisor.}
-
-\wss{This section might reference back to the SRS verification section.}
+For software validation, I will compare the simulation results with those from external 
+tools such as the GeoGebra damped harmonic oscillator calculator and other reputable 
+online calculators to ensure accuracy. This external validation serves as an effective 
+method for confirming the software's correctness against established benchmarks. 
+Additionally, task-based inspections and peer reviews will be utilized to verify that 
+the requirements document captures the correct requirements, providing a comprehensive 
+validation approach from both a technical and user-experience perspective.
 
 \section{System Test Description}
 	
 \subsection{Tests for Functional Requirements}
 
-\wss{Subsets of the tests may be in related, so this section is divided into
-  different areas.  If there are no identifiable subsets for the tests, this
-  level of document structure can be removed.}
+Given the project's focus on accurately modeling and simulating damped harmonic 
+oscillators, the testing strategy is organized around key functional areas derived from 
+the SRS document.
 
-\wss{Include a blurb here to explain why the subsections below
-  cover the requirements.  References to the SRS would be good here.}
-
-\subsubsection{Area of Testing1}
-
-\wss{It would be nice to have a blurb here to explain why the subsections below
-  cover the requirements.  References to the SRS would be good here.  If a section
-  covers tests for input constraints, you should reference the data constraints
-  table in the SRS.}
-		
-\paragraph{Title for Test}
+\subsubsection{Input Parameters Handling}
 
 \begin{enumerate}
 
 \item{test-id1\\}
 
-Control: Manual versus Automatic
+Control: Manual
 					
-Initial State: 
+Initial State: Application loaded with no data entered.
 					
-Input: 
+Input: Varying valid and invalid values for each parameter.
 					
-Output: \wss{The expected result for the given inputs}
+Output: Acceptance of valid inputs and rejection or error messages for invalid inputs 
+according to constraints in SRS section 4.2.6.
 
-Test Case Derivation: \wss{Justify the expected value given in the Output field}
+Test Case Derivation: Verify input parameters for mass, spring constant, damping 
+coefficient, initial displacement, and velocity.
 					
-How test will be performed: 
-					
-\item{test-id2\\}
-
-Control: Manual versus Automatic
-					
-Initial State: 
-					
-Input: 
-					
-Output: \wss{The expected result for the given inputs}
-
-Test Case Derivation: \wss{Justify the expected value given in the Output field}
-
-How test will be performed: 
+How test will be performed: Manually enter data into the software and observe behavior.
 
 \end{enumerate}
 
-\subsubsection{Area of Testing2}
+\subsubsection{Display and Confirmation of Entered Values}
 
-...
+\begin{enumerate}
+
+\item{test-id1\\}
+
+Control: Manual
+					
+Initial State: Parameters entered and awaiting confirmation.
+					
+Input: Parameters for simulation.
+					
+Output: Accurately display entered values for user review before simulation starts.
+
+Test Case Derivation: Ensure entered values are correctly displayed for user confirmation.
+					
+How test will be performed: Check if the UI reflects the exact input values given by the user.
+
+\end{enumerate}
+
+
+\subsubsection{Calculation of Oscillator Dynamics}
+
+\begin{enumerate}
+
+\item{test-id1\\}
+
+Control: Automated
+					
+Initial State: Inputs validated and simulation ready.
+					
+Input: Test scenarios with known outcomes.
+					
+Output: Calculated values match expected theoretical or empirical results within defined 
+tolerances.
+
+Test Case Derivation: Accuracy of displacement, velocity, and energy calculations over time.
+					
+How test will be performed: Use automated scripts to compare software output against 
+benchmark cases.
+
+\end{enumerate}
+
+\subsubsection{Verification of Solution Correctness}
+
+\begin{enumerate}
+
+\item{test-id1\\}
+
+Control: Manual
+					
+Initial State: Simulation completed with results generated.
+					
+Input: Values for comparison.
+					
+Output: Conformance to benchmarks with detailed reports on discrepancies.
+
+Test Case Derivation: Solution verification against known values.
+					
+How test will be performed: Manual comparison to validate output against established 
+benchmarks.
+
+\end{enumerate}
+
+
+\subsubsection{Output Presentation}
+
+\begin{enumerate}
+
+\item{test-id1\\}
+
+Control: Manual
+					
+Initial State: Simulation executed with results available.
+					
+Input: User request for output display.
+					
+Output: Outputs (displacement, velocity, energy) are presented in an easily interpretable 
+format (graphs, tables).
+
+Test Case Derivation: Clarity and understandability of output presentation.
+					
+How test will be performed: User evaluation of output presentation for clarity and 
+completeness.
+
+\end{enumerate}
 
 \subsection{Tests for Nonfunctional Requirements}
 
-\wss{The nonfunctional requirements for accuracy will likely just reference the
-  appropriate functional tests from above.  The test cases should mention
-  reporting the relative error for these tests.  Not all projects will
-  necessarily have nonfunctional requirements related to accuracy}
-
-\wss{Tests related to usability could include conducting a usability test and
-  survey.  The survey will be in the Appendix.}
-
-\wss{Static tests, review, inspections, and walkthroughs, will not follow the
-format for the tests given below.}
-
-\subsubsection{Area of Testing1}
-		
-\paragraph{Title for Test}
+\subsubsection{Accuracy Testing}
 
 \begin{enumerate}
 
 \item{test-id1\\}
 
-Type: Functional, Dynamic, Manual, Static etc.
+Type: Manual
 					
-Initial State: 
+Initial State: System initialized with predefined parameters for a damped oscillator.
 					
-Input/Condition: 
+Input: Specific sets of input parameters for mass, spring constant, and damping 
+coefficient.
 					
-Output/Result: 
+Output: Calculated displacement, velocity, and acceleration over time.
 					
-How test will be performed: 
-					
+How test will be performed: Compare the software output with analytical solutions 
+numerical simulations to calculate relative error.
+
 \item{test-id2\\}
 
-Type: Functional, Dynamic, Manual, Static etc.
+Type: Automated
 					
-Initial State: 
+Initial State: System at rest with no initial input.
 					
-Input: 
+Input/Condition: Range of damping coefficients representing underdamped, critically 
+damped, and overdamped scenarios.
 					
-Output: 
+Output/Result: System's response time to reach equilibrium or a steady state.
 					
-How test will be performed: 
+How test will be performed: Use automated testing tools to run simulations and verify 
+accuracy against theoretical expectations, reporting relative errors.
 
 \end{enumerate}
 
-\subsubsection{Area of Testing2}
-
-...
-
-\subsection{Traceability Between Test Cases and Requirements}
-
-\wss{Provide a table that shows which test cases are supporting which
-  requirements.}
-
-\section{Unit Test Description}
-
-\wss{This section should not be filled in until after the MIS (detailed design
-  document) has been completed.}
-
-\wss{Reference your MIS (detailed design document) and explain your overall
-philosophy for test case selection.}  
-
-\wss{To save space and time, it may be an option to provide less detail in this section.  
-For the unit tests you can potentially layout your testing strategy here.  That is, you 
-can explain how tests will be selected for each module.  For instance, your test building 
-approach could be test cases for each access program, including one test for normal behaviour 
-and as many tests as needed for edge cases.  Rather than create the details of the input 
-and output here, you could point to the unit testing code.  For this to work, you code 
-needs to be well-documented, with meaningful names for all of the tests.}
-
-\subsection{Unit Testing Scope}
-
-\wss{What modules are outside of the scope.  If there are modules that are
-  developed by someone else, then you would say here if you aren't planning on
-  verifying them.  There may also be modules that are part of your software, but
-  have a lower priority for verification than others.  If this is the case,
-  explain your rationale for the ranking of module importance.}
-
-\subsection{Tests for Functional Requirements}
-
-\wss{Most of the verification will be through automated unit testing.  If
-  appropriate specific modules can be verified by a non-testing based
-  technique.  That can also be documented in this section.}
-
-\subsubsection{Module 1}
-
-\wss{Include a blurb here to explain why the subsections below cover the module.
-  References to the MIS would be good.  You will want tests from a black box
-  perspective and from a white box perspective.  Explain to the reader how the
-  tests were selected.}
+\subsubsection{Usability Testing}
 
 \begin{enumerate}
 
 \item{test-id1\\}
-
-Type: \wss{Functional, Dynamic, Manual, Automatic, Static etc. Most will
-  be automatic}
-					
-Initial State: 
-					
-Input: 
-					
-Output: \wss{The expected result for the given inputs}
-
-Test Case Derivation: \wss{Justify the expected value given in the Output field}
-
-How test will be performed: 
-					
-\item{test-id2\\}
-
-Type: \wss{Functional, Dynamic, Manual, Automatic, Static etc. Most will
-  be automatic}
-					
-Initial State: 
-					
-Input: 
-					
-Output: \wss{The expected result for the given inputs}
-
-Test Case Derivation: \wss{Justify the expected value given in the Output field}
-
-How test will be performed: 
-
-\item{...\\}
-    
+  
+Type: Manual, User Survey
+          
+Initial State: Users are provided with the software and basic instructions.
+          
+Input: Tasks requiring users to input parameters, run simulations, and interpret results.
+          
+Output: User feedback on ease of use, intuitiveness of the interface, and clarity of the 
+results presentation.
+          
+How test will be performed: Conduct a usability test followed by a survey to gather 
+qualitative and quantitative data from users.
+  
 \end{enumerate}
 
-\subsubsection{Module 2}
 
-...
+\subsubsection{Maintainability Testing}
 
-\subsection{Tests for Nonfunctional Requirements}
-
-\wss{If there is a module that needs to be independently assessed for
-  performance, those test cases can go here.  In some projects, planning for
-  nonfunctional tests of units will not be that relevant.}
-
-\wss{These tests may involve collecting performance data from previously
-  mentioned functional tests.}
-
-\subsubsection{Module ?}
-		
 \begin{enumerate}
 
 \item{test-id1\\}
-
-Type: \wss{Functional, Dynamic, Manual, Automatic, Static etc. Most will
-  be automatic}
-					
-Initial State: 
-					
-Input/Condition: 
-					
-Output/Result: 
-					
-How test will be performed: 
-					
-\item{test-id2\\}
-
-Type: Functional, Dynamic, Manual, Static etc.
-					
-Initial State: 
-					
-Input: 
-					
-Output: 
-					
-How test will be performed: 
-
+  
+Type: Manual
+          
+Initial State: Existing software codebase and documentation.
+          
+Input: Simulated changes to models and damping functions.
+          
+Output: Effort required for implementation.
+          
+How test will be performed: Review and analysis by development team to estimate the 
+effort needed for future modifications, ensuring it does not exceed 25\% of the 
+original development effort
+  
 \end{enumerate}
 
-\subsubsection{Module ?}
 
-...
+\subsubsection{Portability Testing}
 
-\subsection{Traceability Between Test Cases and Modules}
+\begin{enumerate}
 
-\wss{Provide evidence that all of the modules have been considered.}
-				
-\bibliographystyle{plainnat}
-
-\bibliography{../../refs/References}
+\item{test-id1\\}
+  
+Type: Automated/Manual
+          
+Initial State: Software ready for deployment.
+          
+Input: Operation on Windows 10 and above, macOS Catalina and above, and popular Linux 
+distributions such as Ubuntu 20.04 LTS.
+          
+Output: Software runs without issues.
+          
+How test will be performed: Run the software on various operating systems and Browsers 
+and verify seamless operation, as outlined in the VnV Plan
+  
+\end{enumerate}
 
 \newpage
 
-\section{Appendix}
+\subsection{Traceability Between Test Cases and Requirements}
 
-This is where you can place additional information.
+\subsubsection{Function Requirements}
 
-\subsection{Symbolic Parameters}
+\begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
+\toprule {\bf Requirement ID} & {\bf Test Case ID} &{\bf Description}\\
+\midrule
 
-The definition of the test cases will call for SYMBOLIC\_CONSTANTS.
-Their values are defined in this section for easy maintenance.
+R1 & test-id1 & Verifies the software's ability to accept input parameters for mass, 
+spring constant, damping coefficient, and initial conditions.\\
 
-\subsection{Usability Survey Questions?}
+R2 & test-id2 & Ensures entered values are correctly displayed for user confirmation.\\
 
-\wss{This is a section that would be appropriate for some projects.}
+R3 & test-id3 & Tests the accuracy of displacement, velocity, and energy calculations 
+over time.\\
 
-\newpage{}
-\section*{Appendix --- Reflection}
+R4 & test-id4 & Verifies the correctness of solutions against known benchmarks.\\
 
-The information in this section will be used to evaluate the team members on the
-graduate attribute of Lifelong Learning.  Please answer the following questions:
+R5 & test-id5 & Assesses the clarity and understandability of the software's output 
+presentation.\\
 
-\newpage{}
-\section*{Appendix --- Reflection}
+\bottomrule
+\end{tabularx}
 
-\wss{This section is not required for CAS 741}
+\subsubsection{Non-Function Requirements}
 
-The information in this section will be used to evaluate the team members on the
-graduate attribute of Lifelong Learning.  Please answer the following questions:
+\begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
+\toprule {\bf Requirement ID} & {\bf Test Case ID} &{\bf Description}\\
+\midrule
 
-\begin{enumerate}
-  \item What knowledge and skills will the team collectively need to acquire to
-  successfully complete the verification and validation of your project?
-  Examples of possible knowledge and skills include dynamic testing knowledge,
-  static testing knowledge, specific tool usage etc.  You should look to
-  identify at least one item for each team member.
-  \item For each of the knowledge areas and skills identified in the previous
-  question, what are at least two approaches to acquiring the knowledge or
-  mastering the skill?  Of the identified approaches, which will each team
-  member pursue, and why did they make this choice?
-\end{enumerate}
+NFR1 & test-id1 & Validates computational accuracy against theoretical values to 
+within 0.10\%.\\
+
+NFR1 & test-id2 & Evaluates software usability through user surveys and usability 
+tests.\\
+
+NFR1 & test-id3 & Assesses maintainability by estimating effort required for future 
+modifications and updates.\\
+
+NFR1 & test-id4 & Checks software portability across Windows, macOS, and popular 
+Linux distributions.\\
+
+\bottomrule
+\end{tabularx}
+
+% \section{Unit Test Description}
+
+% \wss{This section should not be filled in until after the MIS (detailed design
+%   document) has been completed.}
+
+% \wss{Reference your MIS (detailed design document) and explain your overall
+% philosophy for test case selection.}  
+
+% \wss{To save space and time, it may be an option to provide less detail in this section.  
+% For the unit tests you can potentially layout your testing strategy here.  That is, you 
+% can explain how tests will be selected for each module.  For instance, your test building 
+% approach could be test cases for each access program, including one test for normal behaviour 
+% and as many tests as needed for edge cases.  Rather than create the details of the input 
+% and output here, you could point to the unit testing code.  For this to work, you code 
+% needs to be well-documented, with meaningful names for all of the tests.}
+
+% \subsection{Unit Testing Scope}
+
+% \wss{What modules are outside of the scope.  If there are modules that are
+%   developed by someone else, then you would say here if you aren't planning on
+%   verifying them.  There may also be modules that are part of your software, but
+%   have a lower priority for verification than others.  If this is the case,
+%   explain your rationale for the ranking of module importance.}
+
+% \subsection{Tests for Functional Requirements}
+
+% \wss{Most of the verification will be through automated unit testing.  If
+%   appropriate specific modules can be verified by a non-testing based
+%   technique.  That can also be documented in this section.}
+
+% \subsubsection{Module 1}
+
+% \wss{Include a blurb here to explain why the subsections below cover the module.
+%   References to the MIS would be good.  You will want tests from a black box
+%   perspective and from a white box perspective.  Explain to the reader how the
+%   tests were selected.}
+
+% \begin{enumerate}
+
+% \item{test-id1\\}
+
+% Type: \wss{Functional, Dynamic, Manual, Automatic, Static etc. Most will
+%   be automatic}
+					
+% Initial State: 
+					
+% Input: 
+					
+% Output: \wss{The expected result for the given inputs}
+
+% Test Case Derivation: \wss{Justify the expected value given in the Output field}
+
+% How test will be performed: 
+					
+% \item{test-id2\\}
+
+% Type: \wss{Functional, Dynamic, Manual, Automatic, Static etc. Most will
+%   be automatic}
+					
+% Initial State: 
+					
+% Input: 
+					
+% Output: \wss{The expected result for the given inputs}
+
+% Test Case Derivation: \wss{Justify the expected value given in the Output field}
+
+% How test will be performed: 
+
+% \item{...\\}
+    
+% \end{enumerate}
+
+% \subsubsection{Module 2}
+
+% ...
+
+% \subsection{Tests for Nonfunctional Requirements}
+
+% \wss{If there is a module that needs to be independently assessed for
+%   performance, those test cases can go here.  In some projects, planning for
+%   nonfunctional tests of units will not be that relevant.}
+
+% \wss{These tests may involve collecting performance data from previously
+%   mentioned functional tests.}
+
+% \subsubsection{Module ?}
+		
+% \begin{enumerate}
+
+% \item{test-id1\\}
+
+% Type: \wss{Functional, Dynamic, Manual, Automatic, Static etc. Most will
+%   be automatic}
+					
+% Initial State: 
+					
+% Input/Condition: 
+					
+% Output/Result: 
+					
+% How test will be performed: 
+					
+% \item{test-id2\\}
+
+% Type: Functional, Dynamic, Manual, Static etc.
+					
+% Initial State: 
+					
+% Input: 
+					
+% Output: 
+					
+% How test will be performed: 
+
+% \end{enumerate}
+
+% \subsubsection{Module ?}
+
+% ...
+
+% \subsection{Traceability Between Test Cases and Modules}
+
+% \wss{Provide evidence that all of the modules have been considered.}
+				
+% \bibliographystyle{plainnat}
+
+% \bibliography{../../refs/References}
+
+% \newpage
+
+% \section{Appendix}
+
+% This is where you can place additional information.
+
+% \subsection{Symbolic Parameters}
+
+% The definition of the test cases will call for SYMBOLIC\_CONSTANTS.
+% Their values are defined in this section for easy maintenance.
+
+% \subsection{Usability Survey Questions?}
+
+% \wss{This is a section that would be appropriate for some projects.}
+
+% \newpage{}
+% \section*{Appendix --- Reflection}
+
+% The information in this section will be used to evaluate the team members on the
+% graduate attribute of Lifelong Learning.  Please answer the following questions:
+
+% \newpage{}
+% \section*{Appendix --- Reflection}
+
+% \wss{This section is not required for CAS 741}
+
+% The information in this section will be used to evaluate the team members on the
+% graduate attribute of Lifelong Learning.  Please answer the following questions:
+
+% \begin{enumerate}
+%   \item What knowledge and skills will the team collectively need to acquire to
+%   successfully complete the verification and validation of your project?
+%   Examples of possible knowledge and skills include dynamic testing knowledge,
+%   static testing knowledge, specific tool usage etc.  You should look to
+%   identify at least one item for each team member.
+%   \item For each of the knowledge areas and skills identified in the previous
+%   question, what are at least two approaches to acquiring the knowledge or
+%   mastering the skill?  Of the identified approaches, which will each team
+%   member pursue, and why did they make this choice?
+% \end{enumerate}
 
 \end{document}

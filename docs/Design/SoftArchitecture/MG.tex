@@ -46,8 +46,7 @@
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
-Date 1 & 1.0 & Notes\\
-Date 2 & 1.1 & Notes\\
+18 Mar, 2024 & 1.0 & Initial MG documentation\\
 \bottomrule
 \end{tabularx}
 
@@ -64,17 +63,11 @@ This section records information for easy reference.
   \toprule		
   \textbf{symbol} & \textbf{description}\\
   \midrule 
-  AC & Anticipated Change\\
-  DAG & Directed Acyclic Graph \\
-  M & Module \\
-  MG & Module Guide \\
-  OS & Operating System \\
-  R & Requirement\\
-  SC & Scientific Computing \\
-  SRS & Software Requirements Specification\\
-  \progname & Explanation of program name\\
-  UC & Unlikely Change \\
-  \wss{etc.} & \wss{...}\\
+  SRS & Software Requirement Specification\\
+  ODE & Ordinary Differential Equation\\
+  DE & Differential Equation\\
+  DHO & Damped Harmonic Oscillator\\
+  SHM & Simple Harmonic Motion\\
   \bottomrule
 \end{tabular}\\
 
@@ -157,11 +150,14 @@ adapted here is called design for
 change.
 
 \begin{description}
-\item[\refstepcounter{acnum} \actheacnum \label{acHardware}:] The specific
-  hardware on which the software is running.
-\item[\refstepcounter{acnum} \actheacnum \label{acInput}:] The format of the
-  initial input data.
-\item ...
+\item[\refstepcounter{acnum} \actheacnum \label{acInitInput}:] The format of the initial input data.
+\item[\refstepcounter{acnum} \actheacnum \label{acInputParams}:]The format of the input parameters.
+\item[\refstepcounter{acnum} \actheacnum \label{acInputConstraints}:] The constraints on the input parameters.
+\item[\refstepcounter{acnum} \actheacnum \label{acFinalOutput}:] The format of the final output data.
+\item[\refstepcounter{acnum} \actheacnum \label{acUserInterface}:] As user feedback is collected and as the software finds use in broader contexts, adjustments to the user interface may be necessary to enhance usability, accessibility, and user experience.
+\item[\refstepcounter{acnum} \actheacnum \label{acOutputPlot}:] How the plotting of the output is implemented.
+\item[\refstepcounter{acnum} \actheacnum \label{acCalcControl}:] The overall control of the calculation.
+\item[\refstepcounter{acnum} \actheacnum \label{acFutureDev}:] Future developments might necessitate the inclusion of more complex systems such as coupled oscillators or multidimensional oscillatory systems.
 \end{description}
 
 \subsection{Unlikely Changes} \label{SecUchange}
@@ -174,9 +170,12 @@ will potentially need to be modified. Hence, it is not intended that these
 decisions will be changed.
 
 \begin{description}
-\item[\refstepcounter{ucnum} \uctheucnum \label{ucIO}:] Input/Output devices
-  (Input: File and/or Keyboard, Output: File, Memory, and/or Screen).
-\item ...
+\item[\refstepcounter{ucnum} \uctheucnum \label{ucIODevices}:] Input/Output devices (Input: File and/or Keyboard, Output: File, Memory, and/or
+Screen).
+\item[\refstepcounter{ucnum} \uctheucnum \label{ucMathPrinciples}:] The fundamental physics and mathematics governing harmonic oscillators are well-established. Significant changes to these principles are unlikely and would fundamentally alter the nature of the software.
+\item[\refstepcounter{ucnum} \uctheucnum \label{ucProgLanguage}:] The selection of the programming language and core libraries is based on their ability to handle the computational requirements and maintainability of the software. While updates and minor changes to dependencies are expected, a complete shift is unlikely due to the substantial effort involved in rewriting and revalidating the software.
+\item[\refstepcounter{ucnum} \uctheucnum \label{ucProgLanguage}:] The selection of the programming language and core libraries is based on their ability to handle the computational requirements and maintainability of the software. While updates and minor changes to dependencies are expected, a complete shift is unlikely due to the substantial effort involved in rewriting and revalidating the software.
+\item[\refstepcounter{ucnum} \uctheucnum \label{ucStandaloneApp}:] The software is designed as a specific solution to modeling harmonic oscillators with damping. Changing its operational mode from a standalone application to an integrated module within a larger system, or vice versa, would require a significant architectural change.
 \end{description}
 
 \section{Module Hierarchy} \label{SecMH}
@@ -184,12 +183,21 @@ decisions will be changed.
 This section provides an overview of the module design. Modules are summarized
 in a hierarchy decomposed by secrets in Table \ref{TblMH}. The modules listed
 below, which are leaves in the hierarchy tree, are the modules that will
-actually be implemented.
+actually be implemented. Modules are numbered
+by M followed by a number.
 
 \begin{description}
 \item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Hardware-Hiding Module
-\item ...
+\item [\refstepcounter{mnum} \mthemnum \label{mDI}:] Data Input Module
+\item [\refstepcounter{mnum} \mthemnum \label{mPI}:] Parameter Input Module
+\item [\refstepcounter{mnum} \mthemnum \label{mCE}:] Calculation Engine Module
+\item [\refstepcounter{mnum} \mthemnum \label{mOM}:] Output Module
+\item [\refstepcounter{mnum} \mthemnum \label{mUIM}:] User Interface Module
+\item [\refstepcounter{mnum} \mthemnum \label{mPVM}:] Plotting and Visualization Module
+\item [\refstepcounter{mnum} \mthemnum \label{mODEM}:] ODE Solver Module
 \end{description}
+
+Note that \mref{mHH} is a commonly used module and is already implemented by the operating system.  It will not be reimplemented.  Similarly, \mref{mPVM} and  \mref{mODEM} are already available in Python/React and will not be reimplemented.
 
 
 \begin{table}[h!]
@@ -199,22 +207,18 @@ actually be implemented.
 \textbf{Level 1} & \textbf{Level 2}\\
 \midrule
 
-{Hardware-Hiding Module} & ~ \\
+{Hardware-Hiding Module} & \mref{mHH} \\
 \midrule
 
-\multirow{7}{0.3\textwidth}{Behaviour-Hiding Module} & ?\\
-& ?\\
-& ?\\
-& ?\\
-& ?\\
-& ?\\
-& ?\\ 
-& ?\\
+\multirow{5}{0.3\textwidth}{Behaviour-Hiding Module} & \mref{mDI}\\
+& \mref{mPI}\\
+& \mref{mCE}\\
+& \mref{mOM}\\
+& \mref{mUIM}\\
 \midrule
 
-\multirow{3}{0.3\textwidth}{Software Decision Module} & {?}\\
-& ?\\
-& ?\\
+\multirow{2}{0.3\textwidth}{Software Decision Module} & \mref{mPVM}\\
+& \mref{mODEM}\\
 \bottomrule
 
 \end{tabular}
@@ -227,13 +231,6 @@ actually be implemented.
 The design of the system is intended to satisfy the requirements developed in
 the SRS. In this stage, the system is decomposed into modules. The connection
 between requirements and modules is listed in Table~\ref{TblRT}.
-
-\wss{The intention of this section is to document decisions that are made
-  ``between'' the requirements and the design.  To satisfy some requirements,
-  design decisions need to be made.  Rather than make these decisions implicit,
-  they are explicitly recorded here.  For instance, if a program has security
-  requirements, a specific design decision may be made to satisfy those
-  requirements with a password.}
 
 \section{Module Decomposition} \label{SecMD}
 
@@ -267,25 +264,57 @@ to be implemented.
 \begin{description}
 \item[Secrets:]The contents of the required behaviours.
 \item[Services:]Includes programs that provide externally visible behaviour of
-  the system as specified in the software requirements specification (SRS)
+  the system as specified in the \href{https://github.com/WaqarAwan376/Damped_Harmonic_Oscillator-CAS741/tree/main/docs/SRS}{software requirements specification (SRS)}
   documents. This module serves as a communication layer between the
   hardware-hiding module and the software decision module. The programs in this
   module will need to change if there are changes in the SRS.
 \item[Implemented By:] --
 \end{description}
 
-\subsubsection{Input Format Module (\mref{mInput})}
+\subsubsection{Data Input Module (\mref{mDI})}
 
 \begin{description}
-\item[Secrets:]The format and structure of the input data.
-\item[Services:]Converts the input data into the data structure used by the
-  input parameters module.
-\item[Implemented By:] [Your Program Name Here]
-\item[Type of Module:] [Record, Library, Abstract Object, or Abstract Data Type]
-  [Information to include for leaf modules in the decomposition by secrets tree.]
+\item[Secrets:]The format and validation rules for the data entered by the user.
+\item[Services:]Validates and transforms user input into a standardized format for processing by the calculation engine. Ensures that all inputs meet the constraints and formats expected by the system.
+\item[Implemented By:] Damped Harmonic Oscillator
+\item[Type of Module:] Library
 \end{description}
 
-\subsubsection{Etc.}
+\subsubsection{Parameter Input Module (\mref{mPI})}
+
+\begin{description}
+\item[Secrets:]The structure and validation criteria for simulation parameters.
+\item[Services:]Processes and validates the parameters specific to the damped harmonic oscillator simulation, such as mass, spring constant, damping coefficients, etc.
+\item[Implemented By:] Damped Harmonic Oscillator
+\item[Type of Module:] Library
+\end{description}
+
+\subsubsection{Calculation Engine Module (\mref{mCE})}
+
+\begin{description}
+\item[Secrets:]The algorithms that implement the mathematical models of the damped harmonic oscillator.
+\item[Services:]Performs the core calculations based on input parameters and models, generating the dynamics of the oscillator over time.
+\item[Implemented By:] Damped Harmonic Oscillator
+\item[Type of Module:] Library
+\end{description}
+
+\subsubsection{Output Module (\mref{mOM})}
+
+\begin{description}
+\item[Secrets:]The data structure and algorithms used to format simulation results for output.
+\item[Services:]Transforms calculation results into various output formats (e.g., graphical, textual) for user interpretation.
+\item[Implemented By:] Damped Harmonic Oscillator
+\item[Type of Module:] Library
+\end{description}
+
+\subsubsection{User Interface Module (\mref{mUIM})}
+
+\begin{description}
+\item[Secrets:]The design and logic for the software's user interface.
+\item[Services:]Provides the graphical or command-line interface through which users interact with the software, including inputting parameters and viewing results.
+\item[Implemented By:] Damped Harmonic Oscillator
+\item[Type of Module:] Library
+\end{description}
 
 
 \subsection{Software Decision Module}
@@ -296,37 +325,47 @@ to be implemented.
   \emph{not} described in the SRS.
 \item[Services:] Includes data structure and algorithms used in the system that
   do not provide direct interaction with the user. 
-  % Changes in these modules are more likely to be motivated by a desire to
-  % improve performance than by externally imposed changes.
 \item[Implemented By:] --
 \end{description}
 
-\subsubsection{Etc.}
+\subsubsection{Plotting and Visualization Module (\mref{mPVM})}
+
+\begin{description}
+\item[Secrets:]The algorithms and libraries used to generate visual representations of the simulation results.
+\item[Services:]Creates charts, graphs, and animations to visually depict the behavior of the damped harmonic oscillator based on the simulation outcomes.
+\item[Implemented By:] ReactJS
+\item[Type of Module:] Library
+\end{description}
+
+\subsubsection{ODE Solver Module (\mref{mODEM})}
+
+\begin{description}
+\item[Secrets:]The numerical methods and algorithms for solving ordinary differential equations (ODEs) that describe the motion of the damped harmonic oscillator.
+\item[Services:]Provides the computational backbone for accurately solving the equations of motion under various conditions and damping models.
+\item[Implemented By:] Python
+\item[Type of Module:] Library
+\end{description}
 
 \section{Traceability Matrix} \label{SecTM}
 
 This section shows two traceability matrices: between the modules and the
 requirements and between the modules and the anticipated changes.
 
-% the table should use mref, the requirements should be named, use something
-% like fref
 \begin{table}[H]
 \centering
 \begin{tabular}{p{0.2\textwidth} p{0.6\textwidth}}
 \toprule
 \textbf{Req.} & \textbf{Modules}\\
 \midrule
-R1 & \mref{mHH}, \mref{mInput}, \mref{mParams}, \mref{mControl}\\
-R2 & \mref{mInput}, \mref{mParams}\\
-R3 & \mref{mVerify}\\
-R4 & \mref{mOutput}, \mref{mControl}\\
-R5 & \mref{mOutput}, \mref{mODEs}, \mref{mControl}, \mref{mSeqDS}, \mref{mSolver}, \mref{mPlot}\\
-R6 & \mref{mOutput}, \mref{mODEs}, \mref{mControl}, \mref{mSeqDS}, \mref{mSolver}, \mref{mPlot}\\
-R7 & \mref{mOutput}, \mref{mEnergy}, \mref{mControl}, \mref{mSeqDS}, \mref{mPlot}\\
-R8 & \mref{mOutput}, \mref{mEnergy}, \mref{mControl}, \mref{mSeqDS}, \mref{mPlot}\\
-R9 & \mref{mVerifyOut}\\
-R10 & \mref{mOutput}, \mref{mODEs}, \mref{mControl}\\
-R11 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
+R1 & \mref{mDI}, \mref{mPI}\\
+R2 & \mref{mUIM}\\
+R3 & \mref{mCE}, \mref{mOM}\\
+R4 & \mref{mCE}\\
+R5 & \mref{mOM}, \mref{mPVM}\\
+NFR1 & \mref{mCE}\\
+NFR1 & \mref{mUIM}\\
+NFR1 & Depends on the nature of the change\\
+NFR1 & \mref{mHH}\\
 \bottomrule
 \end{tabular}
 \caption{Trace Between Requirements and Modules}
@@ -339,18 +378,14 @@ R11 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
 \toprule
 \textbf{AC} & \textbf{Modules}\\
 \midrule
-\acref{acHardware} & \mref{mHH}\\
-\acref{acInput} & \mref{mInput}\\
-\acref{acParams} & \mref{mParams}\\
-\acref{acVerify} & \mref{mVerify}\\
-\acref{acOutput} & \mref{mOutput}\\
-\acref{acVerifyOut} & \mref{mVerifyOut}\\
-\acref{acODEs} & \mref{mODEs}\\
-\acref{acEnergy} & \mref{mEnergy}\\
-\acref{acControl} & \mref{mControl}\\
-\acref{acSeqDS} & \mref{mSeqDS}\\
-\acref{acSolver} & \mref{mSolver}\\
-\acref{acPlot} & \mref{mPlot}\\
+\acref{acInitInput} & \mref{mDI}\\
+\acref{acInputParams} & \mref{mPI}\\
+\acref{acInputConstraints} & \mref{mPI}\\
+\acref{acFinalOutput} & \mref{mOM}\\
+\acref{acUserInterface} & \mref{mUIM}\\
+\acref{acOutputPlot} & \mref{mPVM}\\
+\acref{acCalcControl} & \mref{mCE}\\
+\acref{acFutureDev} & \mref{mCE}\\
 \bottomrule
 \end{tabular}
 \caption{Trace Between Anticipated Changes and Modules}
@@ -372,7 +407,7 @@ because they use modules from the lower levels.
 
 \begin{figure}[H]
 \centering
-%\includegraphics[width=0.7\textwidth]{UsesHierarchy.png}
+\includegraphics[width=0.7\textwidth]{hierarchy.png}
 \caption{Use hierarchy among modules}
 \label{FigUH}
 \end{figure}
@@ -381,18 +416,32 @@ because they use modules from the lower levels.
 
 \section{User Interfaces}
 
-\wss{Design of user interface for software and hardware.  Attach an appendix if
-needed. Drawings, Sketches, Figma}
+Following is a tentative design for the Damped harmonic oscillator simulation.
 
-\section{Design of Communication Protocols}
-
-\wss{If appropriate}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\textwidth]{UI.jpg}
+\caption{Tentative Design}
+\label{FigUI}
+\end{figure}
 
 \section{Timeline}
 
-\wss{Schedule of tasks and who is responsible}
 
-\wss{You can point to GitHub if this information is included there}
+Table displays the timeline for the development of each module and its respective developer.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{p{0.2\textwidth} p{0.4\textwidth}  p{0.4\textwidth}}
+\toprule
+ \textbf{Modules} & \textbf{Time} & \textbf{Responsible} \\
+\midrule
+Frontend& 20 March - 03 April & Waqar\\
+Backend & 24 March - 03 April & Waqar\\
+\bottomrule
+\end{tabular}
+\caption{Timeline}
+\end{table}
 
 \bibliographystyle {plainnat}
 \bibliography{../../../refs/References}

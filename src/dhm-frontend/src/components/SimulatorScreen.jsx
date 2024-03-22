@@ -2,7 +2,7 @@ import React from "react";
 import { Configurer } from "./Configurer";
 import { Simulation } from "./Simulation";
 
-export const UI = () => {
+export const SimulatorScreen = () => {
   return (
     <div>
       <div className="flex">

@@ -47,21 +47,27 @@ const data = [
   },
 ];
 
-export const MotionGraph = () => {
+export const MotionGraph = ({ graphData }) => {
+  const formattedData =
+    graphData &&
+    graphData.map((value, index) => ({
+      index: `Index ${index}`, // Giving each entry a label based on its index
+      value,
+    }));
   return (
     <div>
-      <LineChart width={800} height={500} data={data}>
+      <LineChart width={900} height={500} data={formattedData}>
         <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="name" />
+        <XAxis dataKey="index" />
         <YAxis />
         <Tooltip />
         <Line
           type="monotone"
-          dataKey="pv"
+          dataKey="value"
           stroke="#8884d8"
           activeDot={{ r: 8 }}
         />
-        <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
+        {/* <Line type="monotone" dataKey="uv" stroke="#82ca9d" /> */}
       </LineChart>
     </div>
   );

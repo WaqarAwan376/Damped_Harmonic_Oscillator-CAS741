@@ -1,7 +1,9 @@
 from flask import Flask, jsonify, request
 from utils.dhm_calculator import dhm_calculator
+from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
+CORS(app)
 
 
 @app.route('/hello')
@@ -25,8 +27,6 @@ def calculate_motion():
         initial_velocity
     )
 
-    print(motion_traces["displacement_trace"])
-
     return jsonify(
         displacement_trace=motion_traces["displacement_trace"],
         velocity_trace=motion_traces["velocity_trace"]
@@ -34,4 +34,4 @@ def calculate_motion():
 
 
 if __name__ == '__main__':
-    app.run(port=8000, debug=True)
+    app.run(port=8001, debug=True)

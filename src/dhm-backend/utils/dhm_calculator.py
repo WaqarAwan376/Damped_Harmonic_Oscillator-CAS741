@@ -11,7 +11,7 @@ def dhm_calculator(k, c, m, x0, v0):
 
     # Give initial conditions
     init_conditions = [x0, v0]
-    t = np.linspace(0, 30, 1000)
+    t = np.linspace(0, 60, 2000)
     sol = odeint(ode_solver, init_conditions, t, args=(k, c, m))
 
     json_dump = json.dumps(

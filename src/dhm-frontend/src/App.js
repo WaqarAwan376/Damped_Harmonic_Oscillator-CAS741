@@ -5,20 +5,11 @@ import { Header } from "./components/Header";
 import { SimulatorScreen } from "./components/SimulatorScreen";
 import { checkCalculatorValidation } from "./utils/checkCalculatorValidation";
 import { API_ENDPOINTS } from "./constants/api";
+import { debounce } from "./utils/reqDebouncer";
 
 function App() {
   const [calculationValues, setCalculationValues] = useState({});
   const [graphData, setGraphData] = useState([]);
-
-  const debounce = (func, delay) => {
-    let debounceTimer;
-    return function () {
-      const context = this;
-      const args = arguments;
-      clearTimeout(debounceTimer);
-      debounceTimer = setTimeout(() => func.apply(context, args), delay);
-    };
-  };
 
   const getMotionTrace = useCallback(
     debounce(() => {

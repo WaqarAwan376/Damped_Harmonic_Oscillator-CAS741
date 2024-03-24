@@ -9,7 +9,7 @@ export const Simulation = ({ graphData }) => {
 
       <div className="container p-2">
         <Paper elevation={6}>
-          <div className="w-6/12 mx-auto p-7">
+          <div className="mx-auto p-7">
             <MotionGraph graphData={graphData} />
           </div>
         </Paper>

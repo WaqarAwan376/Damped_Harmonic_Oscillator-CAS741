@@ -42,13 +42,9 @@ function App() {
 
   useEffect(() => {
     if (Object.keys(calculationValues).length !== 0) {
-      // Prevent initial fetch on component mount
       getMotionTrace();
     }
-  }, [getMotionTrace, calculationValues]); // Added calculationValues as a dependency to re-trigger useEffect when values change
-  // useEffect(() => {
-  //   getMotionTrace();
-  // }, [getMotionTrace]);
+  }, [getMotionTrace, calculationValues]);
 
   return (
     <div>

@@ -4,6 +4,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { Header } from "./components/Header";
 import { SimulatorScreen } from "./components/SimulatorScreen";
 import { checkCalculatorValidation } from "./utils/checkCalculatorValidation";
+import { API_ENDPOINTS } from "./constants/api";
 
 function App() {
   const [calculationValues, setCalculationValues] = useState({});
@@ -22,7 +23,7 @@ function App() {
   const getMotionTrace = useCallback(
     debounce(() => {
       if (checkCalculatorValidation(calculationValues).status) {
-        fetch("http://127.0.0.1:5000/calculate_motion", {
+        fetch(API_ENDPOINTS.calculateMotion, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(calculationValues),

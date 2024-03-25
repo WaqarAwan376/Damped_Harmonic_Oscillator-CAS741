@@ -12,8 +12,7 @@ def dhm_calculator(k, c, m, x0, v0, f0, non_linearity):
     # Give initial conditions
     init_conditions = [x0, v0]
     t = np.linspace(0, 100, 1000)
-    ode_args = [k, c, m]
-    extras={}
+    extras = {}
     if f0:
         extras['f0'] = f0
     if non_linearity:

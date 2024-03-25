@@ -1,41 +1,12 @@
-from flask import Flask, jsonify, request
-from utils.dhm_calculator import dhm_calculator
-from flask_cors import CORS, cross_origin
+from flask import Flask
+from flask_cors import CORS
+from controller.calculations import main
 
 app = Flask(__name__)
-CORS(app,origins=["http://localhost:3000"])
 
-
-@app.route('/hello')
-def hello_world():
-    return "Hello World!"
-
-
-@app.route('/calculate_motion', methods=['POST'])
-def calculate_motion():
-    spring_constant = request.json['spring_constant']
-    damping_coefficient = request.json['damping_coefficient']
-    mass = request.json['mass']
-    initial_displacement = request.json['initial_displacement']
-    initial_velocity = request.json['initial_velocity']
-    external_force = request.json.get('external_force')
-    non_linearity = request.json.get('non_linearity')
-
-    motion_traces = dhm_calculator(
-        spring_constant,
-        damping_coefficient,
-        mass,
-        initial_displacement,
-        initial_velocity,
-        external_force,
-        non_linearity
-    )
-
-    return jsonify(
-        displacement_trace=motion_traces["displacement_trace"],
-        velocity_trace=motion_traces["velocity_trace"]
-    )
+CORS(app, origins=["http://localhost:3000"])
+app.register_blueprint(main)
 
 
 if __name__ == '__main__':
-    app.run(port=8001, debug=True)
+    app.run(port=5000, debug=True)

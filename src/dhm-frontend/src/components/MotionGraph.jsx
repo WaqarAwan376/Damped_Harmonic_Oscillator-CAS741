@@ -9,7 +9,7 @@ import {
   Tooltip,
 } from "recharts";
 
-export const MotionGraph = ({ graphData }) => {
+export const MotionGraph = ({ graphData, yLabel }) => {
   const formattedData =
     graphData &&
     graphData.map((value, index) => ({
@@ -39,7 +39,7 @@ export const MotionGraph = ({ graphData }) => {
           <YAxis
             dataKey="value"
             label={{
-              value: "Displacement",
+              value: `${yLabel}`,
               angle: -90,
               position: "insideLeft",
               style: { fontWeight: "bold" },

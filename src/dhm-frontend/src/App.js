@@ -9,6 +9,7 @@ import { API_ENDPOINTS } from "./constants/api";
 function App() {
   const [calculationValues, setCalculationValues] = useState({});
   const [graphData, setGraphData] = useState([]);
+  const [velocityGraphData, setVelocityGraphData] = useState([]);
 
   const debouncedGetMotionTrace = useRef(
     debounce((values) => {
@@ -21,6 +22,7 @@ function App() {
           .then((res) => res.json())
           .then((data) => {
             setGraphData(data.displacement_trace.flat());
+            setVelocityGraphData(data.velocity_trace.flat());
           });
       } else {
         console.log("Show error on the screen");
@@ -45,6 +47,7 @@ function App() {
         setCalculationValues={setCalculationValues}
         calculationValues={calculationValues}
         graphData={graphData}
+        velocityGraphData={velocityGraphData}
       />
     </div>
   );

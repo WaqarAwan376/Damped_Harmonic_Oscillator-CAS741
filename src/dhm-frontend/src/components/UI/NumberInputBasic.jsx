@@ -10,7 +10,7 @@ export const NumberInputBasic = ({
 }) => {
   return (
     <InputNumber
-      className={"text-gray-900 text-sm rounded-lg"}
+      className={"text-gray-900 text-sm rounded-lg text-center"}
       keyboard={true}
       stringMode={false}
       {...(allowNegativeVal ? {} : { min: 0 })}

@@ -3,6 +3,7 @@ import { MathNotation } from "./UI/MathNotation";
 import { NumberInputBasic } from "./UI/NumberInputBasic";
 import { CustomCheckbox } from "./UI/CustomCheckbox";
 import { CustomRadioBtn } from "./UI/CustomRadioBtn";
+import Grow from "@mui/material/Grow";
 
 export const Configurer = ({ setCalculationValues, calculationValues }) => {
   const [isExternalForceSelected, setIsExternalForceSelected] = useState(false);
@@ -132,7 +133,7 @@ export const Configurer = ({ setCalculationValues, calculationValues }) => {
               }}
             />
           </div>
-          {isExternalForceSelected && (
+          <Grow in={isExternalForceSelected}>
             <div>
               <div className="my-3 flex justify-center">
                 <NumberInputBasic
@@ -157,7 +158,7 @@ export const Configurer = ({ setCalculationValues, calculationValues }) => {
                 />
               </div>
             </div>
-          )}
+          </Grow>
         </div>
         <div>
           <div className="p-2 flex flex-col items-center">
@@ -168,7 +169,7 @@ export const Configurer = ({ setCalculationValues, calculationValues }) => {
               }}
             />
           </div>
-          {isNonLinearSelected && (
+          <Grow in={isNonLinearSelected}>
             <div className="flex items-center justify-between">
               <MathNotation str={"\\alpha="} />
               <NumberInputBasic
@@ -177,7 +178,7 @@ export const Configurer = ({ setCalculationValues, calculationValues }) => {
                 onChangeHandler={onNumberChangeHandler}
               />
             </div>
-          )}
+          </Grow>
         </div>
       </div>
     </div>

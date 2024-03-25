@@ -4,29 +4,10 @@ import React from "react";
 export const NumberInputBasic = ({
   allowNegativeVal = false,
   step = 0.5,
-  defaultValue = 0.0,
-  setCalculationValues,
-  calculationValues,
   inputType = "",
   placeholder,
-  externalForceType,
   onChangeHandler,
 }) => {
-  // const onChangeHandler = (val) => {
-  //   const configValues = {
-  //     ...calculationValues,
-  //   };
-  //   if (inputType === "external_force" && externalForceType) {
-  //     configValues[inputType] = {
-  //       type: externalForceType,
-  //       value: val,
-  //     };
-  //     console.log(configValues);
-  //   } else {
-  //     configValues[inputType] = val;
-  //   }
-  //   setCalculationValues(configValues);
-  // };
   return (
     <InputNumber
       className={"text-gray-900 text-sm rounded-lg"}

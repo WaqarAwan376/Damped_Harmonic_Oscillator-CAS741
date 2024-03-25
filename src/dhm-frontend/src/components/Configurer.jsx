@@ -14,13 +14,15 @@ export const Configurer = ({ setCalculationValues, calculationValues }) => {
       const configValues = {
         ...calculationValues,
       };
-      configValues.non_linear = true;
+      configValues.non_linearity =
+        calculationValues.non_linearity?.value ?? 0.0;
       setCalculationValues(configValues);
     } else {
-      setCalculationValues({
+      const configValues = {
         ...calculationValues,
-        non_linear: false,
-      });
+      };
+      delete configValues?.non_linearity;
+      setCalculationValues(configValues);
     }
   }, [isNonLinearSelected]);
 
@@ -81,8 +83,6 @@ export const Configurer = ({ setCalculationValues, calculationValues }) => {
         <div className="flex items-center justify-between">
           <MathNotation str={"m="} />
           <NumberInputBasic
-            setCalculationValues={setCalculationValues}
-            calculationValues={calculationValues}
             inputType="mass"
             placeholder={"Enter a number(0.1-10)"}
             onChangeHandler={onNumberChangeHandler}
@@ -91,8 +91,6 @@ export const Configurer = ({ setCalculationValues, calculationValues }) => {
         <div className="flex items-center justify-between">
           <MathNotation str={"c="} />
           <NumberInputBasic
-            setCalculationValues={setCalculationValues}
-            calculationValues={calculationValues}
             inputType="damping_coefficient"
             placeholder={"Enter a number"}
             onChangeHandler={onNumberChangeHandler}
@@ -101,18 +99,15 @@ export const Configurer = ({ setCalculationValues, calculationValues }) => {
         <div className="flex items-center justify-between">
           <MathNotation str={"k="} />
           <NumberInputBasic
-            setCalculationValues={setCalculationValues}
-            calculationValues={calculationValues}
             inputType="spring_constant"
             placeholder={"Enter a number"}
             onChangeHandler={onNumberChangeHandler}
+            allowNegativeVal={true}
           />
         </div>
         <div className="flex items-center justify-between">
           <MathNotation str={"x_0="} />
           <NumberInputBasic
-            setCalculationValues={setCalculationValues}
-            calculationValues={calculationValues}
             allowNegativeVal={true}
             inputType="initial_displacement"
             placeholder={"Enter a number"}
@@ -122,61 +117,67 @@ export const Configurer = ({ setCalculationValues, calculationValues }) => {
         <div className="flex items-center justify-between">
           <MathNotation str={"v_0="} />
           <NumberInputBasic
-            setCalculationValues={setCalculationValues}
-            calculationValues={calculationValues}
             inputType="initial_velocity"
             placeholder={"Enter a number"}
             onChangeHandler={onNumberChangeHandler}
           />
         </div>
-      </div>
-      <div>
-        <div className="p-2 flex flex-col items-center">
-          <CustomCheckbox
-            heading={"Include External Force"}
-            onChange={() => {
-              setIsExternalForceSelected(!isExternalForceSelected);
-            }}
-          />
+
+        <div>
+          <div className="p-2 flex flex-col items-center">
+            <CustomCheckbox
+              heading={"Include External Force"}
+              onChange={() => {
+                setIsExternalForceSelected(!isExternalForceSelected);
+              }}
+            />
+          </div>
+          {isExternalForceSelected && (
+            <div>
+              <div className="my-3 flex justify-center">
+                <NumberInputBasic
+                  inputType="external_force"
+                  placeholder={"Enter a number"}
+                  onChangeHandler={onNumberChangeHandler}
+                />
+              </div>
+              <div className="p-2 flex flex-col items-center">
+                <CustomRadioBtn
+                  value={"constant"}
+                  text={"Constant"}
+                  name={"external_force"}
+                  defaultChecked
+                  onChange={onCheckHandler}
+                />
+                <CustomRadioBtn
+                  value={"sinusoidal"}
+                  text={"Sinusoidal"}
+                  name={"external_force"}
+                  onChange={onCheckHandler}
+                />
+              </div>
+            </div>
+          )}
         </div>
-        {isExternalForceSelected && (
-          <div>
-            <div className="my-3 flex justify-center">
+        <div>
+          <div className="p-2 flex flex-col items-center">
+            <CustomCheckbox
+              heading={"Include Non-linear Restoring Force"}
+              onChange={() => {
+                setIsNonLinearSelected(!isNonLinearSelected);
+              }}
+            />
+          </div>
+          {isNonLinearSelected && (
+            <div className="flex items-center justify-between">
+              <MathNotation str={"\\alpha="} />
               <NumberInputBasic
-                setCalculationValues={setCalculationValues}
-                calculationValues={calculationValues}
-                inputType="external_force"
+                inputType="non_linearity"
                 placeholder={"Enter a number"}
-                externalForceType={externalForceType}
                 onChangeHandler={onNumberChangeHandler}
               />
             </div>
-            <div className="p-2 flex flex-col items-center">
-              <CustomRadioBtn
-                value={"constant"}
-                text={"Constant"}
-                name={"external_force"}
-                defaultChecked
-                onChange={onCheckHandler}
-              />
-              <CustomRadioBtn
-                value={"sinusoidal"}
-                text={"Sinusoidal"}
-                name={"external_force"}
-                onChange={onCheckHandler}
-              />
-            </div>
-          </div>
-        )}
-      </div>
-      <div>
-        <div className="p-2 flex flex-col items-center">
-          <CustomCheckbox
-            heading={"Include Non-linear Restoring Force"}
-            onChange={() => {
-              setIsNonLinearSelected(!isNonLinearSelected);
-            }}
-          />
+          )}
         </div>
       </div>
     </div>

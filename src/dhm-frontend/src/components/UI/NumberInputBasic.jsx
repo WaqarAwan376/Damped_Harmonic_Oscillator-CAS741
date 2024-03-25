@@ -7,6 +7,7 @@ export const NumberInputBasic = ({
   inputType = "",
   placeholder,
   onChangeHandler,
+  value,
 }) => {
   return (
     <InputNumber
@@ -20,6 +21,7 @@ export const NumberInputBasic = ({
       placeholder={placeholder}
       onChange={(val) => onChangeHandler(val, inputType)}
       defaultValue={0.0}
+      value={value}
     />
   );
 };

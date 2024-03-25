@@ -140,6 +140,7 @@ export const Configurer = ({ setCalculationValues, calculationValues }) => {
                   inputType="external_force"
                   placeholder={"Enter a number"}
                   onChangeHandler={onNumberChangeHandler}
+                  value={calculationValues.external_force?.value ?? 0.0}
                 />
               </div>
               <div className="p-2 flex flex-col items-center">
@@ -176,6 +177,7 @@ export const Configurer = ({ setCalculationValues, calculationValues }) => {
                 inputType="non_linearity"
                 placeholder={"Enter a number"}
                 onChangeHandler={onNumberChangeHandler}
+                value={calculationValues.non_linearity?.value ?? 0.0}
               />
             </div>
           </Grow>

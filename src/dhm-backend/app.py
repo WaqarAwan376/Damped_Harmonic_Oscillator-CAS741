@@ -3,7 +3,7 @@ from utils.dhm_calculator import dhm_calculator
 from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
-CORS(app)
+CORS(app,origins=["http://localhost:3000"])
 
 
 @app.route('/hello')
@@ -18,13 +18,17 @@ def calculate_motion():
     mass = request.json['mass']
     initial_displacement = request.json['initial_displacement']
     initial_velocity = request.json['initial_velocity']
+    external_force = request.json.get('external_force')
+    non_linear = request.json.get('non_linear')
 
     motion_traces = dhm_calculator(
         spring_constant,
         damping_coefficient,
         mass,
         initial_displacement,
-        initial_velocity
+        initial_velocity,
+        external_force,
+        non_linear
     )
 
     return jsonify(

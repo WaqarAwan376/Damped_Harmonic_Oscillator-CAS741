@@ -15,6 +15,7 @@
     "space-before-function-paren": "off",
     "react/prop-types": "off",
     "comma-dangle": "off",
-    "no-unused-vars": "warn"
+    "no-unused-vars": "warn",
+    "max-len": ["warn", 100]
   }
 }

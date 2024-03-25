@@ -5,9 +5,6 @@ export const checkCalculatorValidation = (data) => {
   if (parseFloat(data.mass) < 0) {
     return { message: "Mass cannot be a negative value", status: false };
   }
-  if (!data.damping_coefficient) {
-    return { message: "Please enter the damping coefficient", status: false };
-  }
   if (!data.spring_constant) {
     return { message: "Please enter the spring constant", status: false };
   }

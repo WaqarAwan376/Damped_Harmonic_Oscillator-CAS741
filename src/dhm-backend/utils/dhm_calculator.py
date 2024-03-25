@@ -5,14 +5,18 @@ import numpy as np
 import json
 
 
-def dhm_calculator(k, c, m, x0, v0):
+def dhm_calculator(k, c, m, x0, v0, f0, non_linear):
     # Equation of motion for Damped Harmonic Motion with linear restoring force
     # m*d2x/dt2 + k*x + c*dx/dt = 0
 
     # Give initial conditions
     init_conditions = [x0, v0]
-    t = np.linspace(0, 60, 2000)
-    sol = odeint(ode_solver, init_conditions, t, args=(k, c, m))
+    t = np.linspace(0, 100, 1000)
+    ode_args = [k, c, m]
+    extras={}
+    if f0:
+        extras['f0'] = f0
+    sol = odeint(ode_solver, init_conditions, t, args=(k, c, m, extras))
 
     json_dump = json.dumps(
         {

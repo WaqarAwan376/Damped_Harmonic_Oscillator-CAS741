@@ -1,42 +1,42 @@
-import "./App.css";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
+import debounce from "lodash/debounce";
 
 import { Header } from "./components/Header";
 import { SimulatorScreen } from "./components/SimulatorScreen";
 import { checkCalculatorValidation } from "./utils/checkCalculatorValidation";
 import { API_ENDPOINTS } from "./constants/api";
-import { debounce } from "./utils/reqDebouncer";
 
 function App() {
   const [calculationValues, setCalculationValues] = useState({});
   const [graphData, setGraphData] = useState([]);
 
-  const getMotionTrace = useCallback(
-    debounce(() => {
-      if (checkCalculatorValidation(calculationValues).status) {
+  const debouncedGetMotionTrace = useRef(
+    debounce((values) => {
+      if (checkCalculatorValidation(values).status) {
         fetch(API_ENDPOINTS.calculateMotion, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(calculationValues),
+          body: JSON.stringify(values),
         })
-          .then((res) => {
-            return res.json();
-          })
+          .then((res) => res.json())
           .then((data) => {
             setGraphData(data.displacement_trace.flat());
           });
       } else {
         console.log("Show error on the screen");
       }
-    }, 800),
-    [calculationValues]
+    }, 1000)
   );
 
   useEffect(() => {
     if (Object.keys(calculationValues).length !== 0) {
-      getMotionTrace();
+      debouncedGetMotionTrace.current(calculationValues);
     }
-  }, [getMotionTrace, calculationValues]);
+
+    return () => {
+      debouncedGetMotionTrace.current.cancel();
+    };
+  }, [calculationValues]);
 
   return (
     <div>

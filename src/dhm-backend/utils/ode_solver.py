@@ -9,8 +9,6 @@ def get_omega(k, m, c):
 def ode_solver(init_conditions, t, k, c, m, extras):
     x, v = init_conditions
     dxdt = v
-    # dvdt = ((-k * x)/m) - ((c * v)/m)
-    # dvdt = (-k * x - c * v+0.2) / m
     f_ext = 0
     non_linear_value = 0
     if 'f0' in extras.keys():

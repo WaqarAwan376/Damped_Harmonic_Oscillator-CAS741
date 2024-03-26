@@ -13,10 +13,14 @@ def dhm_calculator(k, c, m, x0, v0, f0, non_linearity):
     init_conditions = [x0, v0]
     t = np.linspace(0, 100, 1000)
     extras = {}
+
+
+
     if f0:
         extras['f0'] = f0
     if non_linearity:
         extras['non_linearity'] = non_linearity
+
     sol = odeint(ode_solver, init_conditions, t, args=(k, c, m, extras))
 
     json_dump = json.dumps(

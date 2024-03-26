@@ -177,7 +177,7 @@ export const Configurer = ({ setCalculationValues, calculationValues }) => {
                 inputType="non_linearity"
                 placeholder={"Enter a number"}
                 onChangeHandler={onNumberChangeHandler}
-                value={calculationValues.non_linearity?.value ?? 0.0}
+                value={calculationValues.non_linearity ?? 0}
               />
             </div>
           </Grow>

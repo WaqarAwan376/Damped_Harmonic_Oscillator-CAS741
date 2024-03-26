@@ -21,6 +21,7 @@ def ode_solver(init_conditions, t, k, c, m, extras):
 
     if 'non_linearity' in extras.keys():
         non_linear_value = extras['non_linearity']
+
     dvdt = ((-k * x) - (c * v) - (non_linear_value*x**3) + f_ext) / m
 
     return [dxdt, dvdt]

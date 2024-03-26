@@ -33,3 +33,17 @@ def dhm_calculator(k, c, m, x0, v0, f0, non_linearity):
         displacement_trace=sol["displacement_trace"],
         velocity_trace=sol["velocity_trace"]
     )
+
+
+def check_oscillator_status(c, m, k):
+    c_sq = c**2
+    mk = 4*m*k
+
+    if c_sq < mk:
+        return "under"
+    elif c_sq == mk:
+        return "equal"
+    elif c_sq > 4*mk:
+        return "over"
+    else:
+        return "none"

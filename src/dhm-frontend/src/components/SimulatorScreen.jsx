@@ -7,6 +7,7 @@ export const SimulatorScreen = ({
   calculationValues,
   graphData,
   velocityGraphData,
+  dampingStatus,
 }) => {
   return (
     <div>
@@ -21,6 +22,7 @@ export const SimulatorScreen = ({
           <Simulation
             graphData={graphData}
             velocityGraphData={velocityGraphData}
+            dampingStatus={dampingStatus}
           />
         </div>
       </div>

@@ -1,18 +1,21 @@
 export const checkCalculatorValidation = (data) => {
-  if (!data.mass) {
-    return { message: "Please enter the mass of the body", status: false };
-  }
-  if (parseFloat(data.mass) < 0) {
-    return { message: "Mass cannot be a negative value", status: false };
-  }
-  if (!data.spring_constant) {
-    return { message: "Please enter the spring constant", status: false };
-  }
-  if (!data.initial_displacement) {
+  if (!data.mass || parseFloat(data.mass) <= 0) {
+    return { message: "Please enter a valid mass value.", status: false };
+  } else if (!data.spring_constant || data.spring_constant < 0) {
+    return {
+      message: "Please enter a valid spring constant value.",
+      status: false,
+    };
+  } else if (parseFloat(data.damping_coefficient) < 0) {
+    return {
+      message: "Please enter a valid damping coefficient value.",
+      status: false,
+    };
+  } else if (
+    !data.initial_displacement ||
+    parseFloat(data.initial_displacement) <= 0
+  ) {
     return { message: "Please enter the initial displacement", status: false };
-  }
-  if (!data.initial_velocity) {
-    return { message: "Please enter the initial velocity", status: false };
   }
 
   return { status: true };

@@ -10,6 +10,7 @@ function App() {
   const [calculationValues, setCalculationValues] = useState({});
   const [graphData, setGraphData] = useState([]);
   const [velocityGraphData, setVelocityGraphData] = useState([]);
+  const [dampingStatus, setDampingStatus] = useState();
 
   const debouncedGetMotionTrace = useRef(
     debounce((values) => {
@@ -23,6 +24,7 @@ function App() {
           .then((data) => {
             setGraphData(data.displacement_trace.flat());
             setVelocityGraphData(data.velocity_trace.flat());
+            setDampingStatus(data.oscillator_status);
           });
       } else {
         console.log("Show error on the screen");
@@ -48,6 +50,7 @@ function App() {
         calculationValues={calculationValues}
         graphData={graphData}
         velocityGraphData={velocityGraphData}
+        dampingStatus={dampingStatus}
       />
     </div>
   );

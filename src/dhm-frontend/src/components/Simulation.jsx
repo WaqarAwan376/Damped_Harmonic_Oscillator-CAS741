@@ -16,21 +16,30 @@ export const Simulation = ({ graphData, velocityGraphData, dampingStatus }) => {
               isTrue={dampingStatus === "under"}
               className={"mx-2"}
             />
-            <MathNotation str={"b^2 < 4mk"} />
+            <div className="flex items-center">
+              <MathNotation str={"b^2 < 4mk"} />
+              &nbsp;(Under damped)
+            </div>
           </div>
           <div className="flex justify-center items-center mx-3">
             <DampingStatus
               isTrue={dampingStatus === "equal"}
               className={"mx-2"}
             />
-            <MathNotation str={"b^2 = 4mk"} />
+            <div className="flex items-center">
+              <MathNotation str={"b^2 = 4mk"} />
+              &nbsp;(Critically damped)
+            </div>
           </div>
           <div className="flex justify-center items-center mx-3">
             <DampingStatus
               isTrue={dampingStatus === "over"}
               className={"mx-2"}
             />
-            <MathNotation str={"b^2 >> 4mk"} />
+            <div className="flex items-center">
+              <MathNotation str={"b^2 >> 4mk"} />
+              &nbsp;(Over damped)
+            </div>
           </div>
         </div>
 
